@@ -73,7 +73,7 @@ export default {
     },
 
     setToggle() {
-      this.toggle = this.queryRegexp || this.pageId == this.openNodeId;
+      this.toggle = this.toggle || this.queryRegexp || this.pageId == this.currentNodeId;
       if (this.toggle) {
         this.$emit('openChild');
       }
