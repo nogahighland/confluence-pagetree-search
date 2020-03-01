@@ -10,7 +10,7 @@
       "js": ["scripts/content-script.bundle.js"]
     }
   ],
-  "permissions": ["storage"],
+  "permissions": ["storage", "activeTab"],
   "icons": {
     "16": "icons/icon.png",
     "48": "icons/icon.png",
