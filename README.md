@@ -2,6 +2,12 @@
 
 This is a chrome extension that replaces confluence page tree.
 
+## Screenshots
+
+default|filterd|expanded
+---|---|---
+<img src="https://user-images.githubusercontent.com/19767299/75636552-04301880-5c63-11ea-90e0-d37ecf5b9d60.png">|<img src="https://user-images.githubusercontent.com/19767299/75636556-0abe9000-5c63-11ea-8296-0ad5384e2ee6.png">|<img src="https://user-images.githubusercontent.com/19767299/75636558-10b47100-5c63-11ea-8eef-9bcbe94b4860.png">
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
