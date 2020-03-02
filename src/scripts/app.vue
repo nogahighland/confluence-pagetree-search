@@ -55,7 +55,7 @@ export default {
     ...mapState(['query']),
 
     treeUrl() {
-      return `https://confluence.rakuten-it.com/confluence/plugins/pagetree/naturalchildren.action?sort=position&hasRoot=true&pageId=${this.rootId}&startDepth=100`
+      return `/confluence/plugins/pagetree/naturalchildren.action?sort=position&hasRoot=true&pageId=${this.rootId}&startDepth=100`
     },
 
     rootId() {
