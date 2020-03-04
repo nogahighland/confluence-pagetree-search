@@ -2,6 +2,9 @@
 
 This is a chrome extension that replaces confluence page tree.
 
+The extension can be installed here:
+https://chrome.google.com/webstore/detail/confluence-better-pagetre/impgjbnbnocheogednhacjjofkkkbpce/related
+
 ## Screenshots
 
 default|filtered|expanded
