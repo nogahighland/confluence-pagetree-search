@@ -79,7 +79,7 @@ export default {
     },
 
     hideOriginalPageTree() {
-      document.querySelectorAll('.acs-side-bar .page-tree,.plugin_pagetree').forEach(e => e.style.display = 'none');
+      document.querySelectorAll('.acs-side-bar .page-tree, .acs-side-bar .plugin_pagetree').forEach(e => e.style.display = 'none');
     },
 
     setTreeData(response) {
