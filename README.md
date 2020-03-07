@@ -51,3 +51,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## History
+
+version|description
+---|---
+0.0.1|First release
+0.0.2|Fix #1
+
