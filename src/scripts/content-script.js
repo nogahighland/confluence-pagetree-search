@@ -15,7 +15,4 @@ if (nav) {
   }).$mount();
 
   appElement.appendChild(app.$el)
-
-  // ついで
-  document.querySelectorAll('a').forEach(e => e.target = '_blank');
 }
