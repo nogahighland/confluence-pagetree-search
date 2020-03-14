@@ -107,7 +107,7 @@ li {
   justify-content: center;
   display: flex;
   align-items: center;
-  margin-top: 2px;
+  margin-top: 3px;
   color: white;
 }
 .tree-toggle:before {
