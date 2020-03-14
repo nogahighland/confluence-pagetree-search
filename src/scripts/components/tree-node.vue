@@ -97,8 +97,8 @@ li {
 }
 .tree-toggle {
   cursor: pointer;
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   margin-right: 5px;
   float: left;
   content: ' ';
