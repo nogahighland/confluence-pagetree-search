@@ -97,8 +97,8 @@ li {
 }
 .tree-toggle {
   cursor: pointer;
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   margin-right: 5px;
   float: left;
   content: ' ';
@@ -107,7 +107,7 @@ li {
   justify-content: center;
   display: flex;
   align-items: center;
-  margin-top: 2px;
+  margin-top: 3px;
   color: white;
 }
 .tree-toggle:before {
