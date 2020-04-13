@@ -1,7 +1,13 @@
 import Vue from 'vue';
 import App from './app'
 import store from './store'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+library.add(faSyncAlt)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 const appElement = document.createElement('div');
 appElement.id = 'page-tree-incremental-search';
 const nav = document.querySelector('.acs-nav-sections');
