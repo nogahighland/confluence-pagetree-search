@@ -3,12 +3,12 @@
     <div class="input-container">
       <div>
         <label for='tree-incremental-search-input'>Tree Search</label>
+        <font-awesome-icon @click='sync' :class='{ rotating: loading }' class='sync' icon="sync-alt"/>
       </div>
       <div>
         <input name='tree-incremental-search-input' @input='onQueryChange' type='text' />
       </div>
     </div>
-    <p v-if='loading'>loading...</p>
 
     <TreeNode :children='nodeDataList' />
   </div>
@@ -94,6 +94,11 @@ export default {
 
       this.loading = false;
     },
+
+    sync() {
+      this.loading = true;
+      axios.get(this.treeUrl).then(this.setTreeData);
+    }
   },
 
   components: { TreeNode }
@@ -110,5 +115,15 @@ input {
   border-radius: 3px;
   border: 1px solid #c1c7d0;
   margin: 10px 0px;
+}
+.sync {
+  cursor: pointer;
+}
+.rotating {
+  animation: r1 2s linear infinite;
+}
+@keyframes r1 {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
