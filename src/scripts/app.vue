@@ -20,7 +20,7 @@ import moment from 'moment'
 import TreeNode from './components/tree-node'
 import DomParse from './mixins/dom-parse'
 import { mapState, mapActions } from 'vuex'
-import { debounce, throttle } from 'lodash'
+import { debounce } from 'lodash'
 
 export default {
   mixins: [DomParse],
@@ -75,7 +75,7 @@ export default {
     ...mapActions(['setQuery', 'setOpenNodeId', 'setCurrentNodeId']),
 
     onQueryChange(e) {
-      throttle(() => this.setQuery({ query: e.target.value }), 200)();
+      debounce(() => this.setQuery({ query: e.target.value }), 300)();
     },
 
     hideOriginalPageTree() {
