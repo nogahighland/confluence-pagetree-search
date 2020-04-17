@@ -58,4 +58,8 @@ version|description
 ---|---
 0.0.1|First release
 0.0.2|Fix #1
+0.0.3|Fix #3
+0.0.4|Fix #4 #5 #7
+0.0.5|Fix #10 #11
+0.0.6|Delay input handler by throttle => debounce by 200ms => 300ms
 
