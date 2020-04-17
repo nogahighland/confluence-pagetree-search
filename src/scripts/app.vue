@@ -6,7 +6,7 @@
         <font-awesome-icon @click='sync' :class='{ rotating: loading }' class='sync' icon="sync-alt"/>
       </div>
       <div>
-        <input name='tree-incremental-search-input' @input='onQueryChange' type='text' />
+        <input name='tree-incremental-search-input' @input='onQueryChange' type='text' autocomplete='off' />
       </div>
     </div>
 
