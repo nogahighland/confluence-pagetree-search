@@ -41,7 +41,7 @@ export default {
       const spaceData = data[this.rootId];
 
       if (spaceData) {
-        this.nodeDataList = data[this.rootId].nodeDataList;
+        this.nodeDataList = spaceData.nodeDataList;
         this.loading = false;
       }
 
