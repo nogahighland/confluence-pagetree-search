@@ -2,7 +2,7 @@
   <ul>
     <li v-if='isLinkVisible' >
       <div class='tree-toggle' :class='toggleStatus' @click.prevent='toggleSubTree'></div>
-      <a class='link' :class='toggleStatus' :href='url'>{{ linkText }}</a>
+      <a class='link' :class='toggleStatus' :title='linkText' :href='url'>{{ linkText }}</a>
     </li>
 
     <TreeNode v-show='isTreeVisible'
