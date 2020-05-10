@@ -4,7 +4,7 @@ import store from './store'
 
 const appElement = document.createElement('div');
 appElement.id = 'page-tree-incremental-search';
-const nav = document.getElementsByClassName('.acs-nav-sections')[0];
+const nav = document.getElementsByClassName('acs-nav-sections')[0];
 
 if (nav) {
   nav.parentNode.insertBefore(appElement, nav.nextElementSibling);
