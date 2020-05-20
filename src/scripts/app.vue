@@ -59,15 +59,18 @@ export default {
     },
 
     rootId() {
-      return document.querySelector('.plugin_pagetree > ul > div:first-child').id.match(/(\d+)/)[0];
+      return document.getElementsByClassName('plugin_pagetree')[0]
+              .getElementsByTagName('ul')[0]
+              .getElementsByTagName('div')[0]
+              .id.match(/(\d+)/)[0];
     },
 
     activeNodeId() {
-      return document.querySelector('head > meta[name=ajs-parent-page-id]').content;
+      return document.getElementsByTagName('head')[0].querySelector('[name=ajs-parent-page-id]').content;
     },
 
     currentNodeId() {
-      return document.querySelector('head > meta[name=ajs-page-id]').content;
+      return document.getElementsByTagName('head')[0].querySelector('[name=ajs-page-id]').content;
     }
   },
 
