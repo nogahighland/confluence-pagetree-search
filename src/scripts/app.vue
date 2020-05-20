@@ -3,12 +3,12 @@
     <div class="input-container">
       <div>
         <label for='tree-incremental-search-input'>Tree Search</label>
+        <font-awesome-icon @click='sync' :class='{ rotating: loading }' class='sync' icon="sync-alt"/>
       </div>
       <div>
-        <input name='tree-incremental-search-input' @input='onQueryChange' type='text' />
+        <input name='tree-incremental-search-input' @input='onQueryChange' type='text' autocomplete='off' />
       </div>
     </div>
-    <p v-if='loading'>loading...</p>
 
     <TreeNode :children='nodeDataList' />
   </div>
@@ -20,7 +20,7 @@ import moment from 'moment'
 import TreeNode from './components/tree-node'
 import DomParse from './mixins/dom-parse'
 import { mapState, mapActions } from 'vuex'
-import { debounce, throttle } from 'lodash'
+import { debounce } from 'lodash'
 
 export default {
   mixins: [DomParse],
@@ -41,7 +41,7 @@ export default {
       const spaceData = data[this.rootId];
 
       if (spaceData) {
-        this.nodeDataList = data[this.rootId].nodeDataList;
+        this.nodeDataList = spaceData.nodeDataList;
         this.loading = false;
       }
 
@@ -75,7 +75,7 @@ export default {
     ...mapActions(['setQuery', 'setOpenNodeId', 'setCurrentNodeId']),
 
     onQueryChange(e) {
-      throttle(() => this.setQuery({ query: e.target.value }), 200)();
+      debounce(() => this.setQuery({ query: e.target.value }), 300)();
     },
 
     hideOriginalPageTree() {
@@ -94,6 +94,11 @@ export default {
 
       this.loading = false;
     },
+
+    sync() {
+      this.loading = true;
+      axios.get(this.treeUrl).then(this.setTreeData);
+    }
   },
 
   components: { TreeNode }
@@ -108,7 +113,17 @@ input {
   width: 100%;
   height: 2.3em;
   border-radius: 3px;
-  border: solid 1px #BBB;
-  padding-left: 10px;
+  border: 1px solid #c1c7d0;
+  margin: 10px 0px;
+}
+.sync {
+  cursor: pointer;
+}
+.rotating {
+  animation: r1 2s linear infinite;
+}
+@keyframes r1 {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
