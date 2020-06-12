@@ -13,7 +13,28 @@ export default {
         const linkText = a.innerText;
         const url = a.href;
 
-        return { linkText, url, pageId, children }
+        const object = {};
+
+        Object.defineProperties(object, {
+          linkText: {
+            value: linkText,
+            configurable: false
+          },
+          url: {
+            value: url,
+            configurable: false
+          },
+          pageId: {
+            value: pageId,
+            configurable: false
+          },
+          children: {
+            value: children,
+            configurable: false
+          },
+        });
+
+        return object;
       });
     }
   }
