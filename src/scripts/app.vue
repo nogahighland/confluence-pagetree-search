@@ -95,9 +95,9 @@ export default {
       this.loading = false;
     },
 
-    sync() {
+    async sync() {
       this.loading = true;
-      axios.get(this.treeUrl).then(this.setTreeData);
+      this.setTreeData(await axios.get(this.treeUrl));
     }
   },
 
