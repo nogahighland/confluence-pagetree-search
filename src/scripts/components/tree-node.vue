@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-if='isLinkVisible' >
+    <li v-show='isLinkVisible' >
       <div class='tree-toggle' :class='toggleStatus' @click.prevent='toggleSubTree'></div>
       <a class='link' :class='toggleStatus' :title='linkText' :href='url'>{{ linkText }}</a>
     </li>
