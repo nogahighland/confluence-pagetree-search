@@ -62,4 +62,6 @@ version|description
 0.0.4|Fix #4 #5 #7
 0.0.5|Fix #10 #11
 0.0.6|Delay input handler by throttle => debounce by 200ms => 300ms
+0.0.7|Performance tuning #14
+0.0.8|Add target="_blank" for other hosts #16
 
