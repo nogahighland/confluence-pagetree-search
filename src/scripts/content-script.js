@@ -4,6 +4,9 @@ import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import addTargetBlank from './lib/add-target-blank'
+
+addTargetBlank()
 
 library.add(faSyncAlt)
 
