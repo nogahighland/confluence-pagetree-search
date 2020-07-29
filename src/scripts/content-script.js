@@ -6,8 +6,6 @@ import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import addTargetBlank from './lib/add-target-blank'
 
-addTargetBlank()
-
 library.add(faSyncAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
@@ -16,6 +14,7 @@ appElement.id = 'page-tree-incremental-search';
 const nav = document.querySelector('.acs-nav-sections');
 
 if (nav) {
+  addTargetBlank()
   nav.parentNode.insertBefore(appElement, nav.nextElementSibling);
 
   const app = new Vue({
