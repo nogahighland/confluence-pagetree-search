@@ -7,9 +7,10 @@ https://chrome.google.com/webstore/detail/confluence-better-pagetre/impgjbnbnoch
 
 ## Screenshots
 
+
 default|filtered|expanded
 ---|---|---
-<img src="https://user-images.githubusercontent.com/19767299/75636552-04301880-5c63-11ea-90e0-d37ecf5b9d60.png">|<img src="https://user-images.githubusercontent.com/19767299/75636556-0abe9000-5c63-11ea-8296-0ad5384e2ee6.png">|<img src="https://user-images.githubusercontent.com/19767299/75636558-10b47100-5c63-11ea-8eef-9bcbe94b4860.png">
+![Untitled 001](https://user-images.githubusercontent.com/1780339/88995204-089d5200-d325-11ea-97af-574f938c4ce7.jpeg)|![Untitled 003](https://user-images.githubusercontent.com/1780339/88995211-0b984280-d325-11ea-8e74-412e343a51c6.jpeg)|![Untitled 002](https://user-images.githubusercontent.com/1780339/88995209-0affac00-d325-11ea-97bd-e1d7c6350d77.jpeg)
 
 ## Getting Started
 
@@ -66,4 +67,5 @@ version|description
 0.0.8|Add target="_blank" for other hosts #16
 0.0.9|Fix target="_blank" for other hosts #18
 0.0.10|Scroll to current page #19
+0.0.11|Fix scroll, Fake text for store screenshots #19, #20
 

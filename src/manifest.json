@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Confluence Better Pagetree",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Replace sidebar pagetree. This extension enables tree incremental search",
   "author": "kissy0601",
   "content_scripts": [
