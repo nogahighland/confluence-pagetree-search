@@ -31,6 +31,11 @@ export default {
 
   mounted() {
     this.setToggle();
+    this.scrollToCurrentPage();
+  },
+
+  updated() {
+    this.scrollToCurrentPage();
   },
 
   computed: {
@@ -56,11 +61,13 @@ export default {
         status.collapsed = !(status.expanded = this.toggle)
       }
 
-      if (this.pageId == this.currentNodeId) {
-        status.current = true;
-      }
+      status.current = this.isCurrentPage;
 
       return status;
+    },
+
+    isCurrentPage() {
+      return this.pageId == this.currentNodeId;
     }
   },
 
@@ -82,6 +89,14 @@ export default {
     openChild() {
       this.toggle = true;
       this.$emit('openChild');
+    },
+
+    scrollToCurrentPage() {
+      if (this.isCurrentPage) {
+        setTimeout(() => {
+          this.$el.scrollIntoView({ block:'center' });
+        }, 1)
+      }
     }
   }
 }
