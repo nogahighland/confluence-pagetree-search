@@ -34,10 +34,6 @@ export default {
     this.scrollToCurrentPage();
   },
 
-  updated() {
-    this.scrollToCurrentPage();
-  },
-
   computed: {
     ...mapState(['query', 'openNodeId', 'currentNodeId']),
     ...mapGetters(['queryRegexp']),
@@ -92,7 +88,7 @@ export default {
     },
 
     scrollToCurrentPage() {
-      if (this.isCurrentPage) {
+      if (this.isCurrentPage && !this.queryRegexp) {
         setTimeout(() => {
           this.$el.scrollIntoView({ block:'center' });
         }, 1)
