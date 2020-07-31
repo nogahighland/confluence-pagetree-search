@@ -65,4 +65,5 @@ version|description
 0.0.7|Performance tuning #14
 0.0.8|Add target="_blank" for other hosts #16
 0.0.9|Fix target="_blank" for other hosts #18
+0.0.10|Scroll to current page #19
 
