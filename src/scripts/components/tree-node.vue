@@ -7,7 +7,7 @@
 
     <TreeNode v-show='isTreeVisible'
               v-for="child in children"
-              :linkText="child.linkText"
+              :linkText="getDisplayText(child)"
               :url="child.url"
               :pageId="child.pageId"
               :children="child.children"
@@ -20,6 +20,7 @@
 <script>
 import axios from 'axios'
 import { mapState, mapGetters } from 'vuex'
+import faker from 'faker'
 
 export default {
   props: [ 'linkText', 'url', 'pageId', 'children'],
@@ -72,6 +73,12 @@ export default {
   },
 
   methods: {
+    getDisplayText(child) {
+      // For store screenshots
+      // return [faker.random.word(), faker.random.word(), faker.random.word()]
+      return child.linkText
+    },
+
     toggleSubTree() {
       this.toggle = !this.toggle;
       if (this.toggle) {
