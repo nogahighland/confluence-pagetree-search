@@ -2,8 +2,12 @@ const host = location.host
 
 function addTargetBlank() {
   document.querySelectorAll('a').forEach((a) => {
-    if (a.href && host != new URL(a.href).host) {
-      a.target = '_blank'
+    try {
+      if (a.href && host != new URL(a.href).host) {
+        a.target = '_blank'
+      }
+    } catch(e) {
+      console.error(a, e)
     }
   })
 }
