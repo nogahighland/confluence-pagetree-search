@@ -28,5 +28,8 @@
     "vuex": "^3.1.2",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "vue-analytics": "^5.22.1"
   }
 }

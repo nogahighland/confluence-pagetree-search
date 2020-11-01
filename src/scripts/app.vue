@@ -75,7 +75,11 @@ export default {
     ...mapActions(['setQuery', 'setOpenNodeId', 'setCurrentNodeId']),
 
     onQueryChange(e) {
-      debounce(() => this.setQuery({ query: e.target.value }), 300)();
+      debounce(() => {
+        this.$ga.event('a', 'b', 'c', 'd')
+        this.$ga.page('/')
+        this.setQuery({ query: e.target.value })
+      }, 300)();
     },
 
     hideOriginalPageTree() {
