@@ -18,7 +18,7 @@
     "eslint": "^6.8.0",
     "faker": "^5.5.3",
     "lodash": "^4.17.21",
-    "moment": "^2.24.0",
+    "moment": "^2.29.1",
     "node-sass": "^4.13.1",
     "random-words": "^1.1.1",
     "sass-loader": "^8.0.2",
