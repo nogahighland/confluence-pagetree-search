@@ -21,7 +21,7 @@
     "moment": "^2.29.1",
     "node-sass": "^5.0.0",
     "random-words": "^1.1.1",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^11.0.1",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12",
