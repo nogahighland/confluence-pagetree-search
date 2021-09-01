@@ -25,22 +25,27 @@ export default {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: { loader: 'babel-loader' }
-      },
-      {
-        test: /.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+        test: /\.ts$/,
+        exclude: {
+          include: /node_modules/,
+          exclude: [/node_modules\/vue-analytics/]
+        },
+        use: [
+          {
+            loader: 'babel-loader'
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              appendTsSuffixTo: [/\.vue$/]
+            }
           }
-        }
+        ]
       },
       {
-        test: /\.scss$/,
-        use: ['vue-style-loader', 'css-loader', 'sass-loader']
-      }
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
     ]
   },
 
@@ -61,6 +66,6 @@ export default {
   ],
 
   resolve: {
-    extensions: [".vue", ".js"],
+    extensions: [".vue", ".ts"],
   },
 };
