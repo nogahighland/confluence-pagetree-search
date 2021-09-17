@@ -1,6 +1,6 @@
 const host = location.host
 
-function addTargetBlank() {
+export const addTargetBlank = () => {
   document.querySelectorAll('a').forEach((a) => {
     try {
       if (a.href && host != new URL(a.href).host) {
@@ -11,5 +11,3 @@ function addTargetBlank() {
     }
   })
 }
-
-export default addTargetBlank
