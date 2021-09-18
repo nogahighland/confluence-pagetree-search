@@ -45,8 +45,8 @@ export default {
   },
 
   plugins: [
-    new CopyWebpackPlugin(
-      [
+    new CopyWebpackPlugin({
+      patterns: [
         {
           from: path.join(__dirname, 'src', 'manifest.json'),
           to: path.join(__dirname, 'dist'),
@@ -56,7 +56,7 @@ export default {
           to: path.join(__dirname, 'dist/icons'),
         }
       ]
-    ),
+    }),
     new VueLoaderPlugin()
   ],
 
