@@ -1,5 +1,5 @@
-node_modules/
-dist/
-*.zip
-*.json
-*.html
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
