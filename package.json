@@ -14,7 +14,7 @@
     "axios": "^0.21.2",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^8.1.1",
-    "css-loader": "^5.2.4",
+    "css-loader": "^6.2.0",
     "eslint": "^7.25.0",
     "faker": "^5.5.3",
     "lodash": "^4.17.21",
