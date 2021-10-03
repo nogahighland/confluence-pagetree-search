@@ -1,9 +1,9 @@
 <template lang="pug">
-.hoge
+.hoge page tree
 </template>
 
 <style lang="scss" scoped>
 div {
-  background-color: #000
+  background-color: #000;
 }
 </style>
