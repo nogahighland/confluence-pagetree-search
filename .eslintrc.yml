@@ -1,55 +1,40 @@
 ---
-env:
-  browser: true
-  es6: true
-
 extends:
-- plugin:vue/essential
+- eslint:recommended
+- plugin:@typescript-eslint/eslint-recommended
 - plugin:prettier/recommended
-- plugin:import/recommended
-
-globals:
-  Atomics: readonly
-  SharedArrayBuffer: readonly
-
-parserOptions:
-  ecmaVersion: 11
-  parser: "@typescript-eslint/parser"
-  sourceType: module
+- plugin:import/errors
 
 plugins:
-- vue
 - "@typescript-eslint"
-
+env:
+  node: true
+  es6: true
+parser: "@typescript-eslint/parser"
+parserOptions:
+  sourceType: module
+  project: "./tsconfig.json"
 rules:
-  object-curly-newline:
-  - 'off'
 
-  class-methods-use-this:
-  - 'off'
+  no-unused-vars: 'off'
+  "@typescript-eslint/no-unused-vars": error
 
-  no-plusplus:
-  - 'off'
-
-  import/extensions:
+  max-lines-per-function:
   - error
-  - never
-  - vue: never
-    ts: never
+  - max: 30
+    skipBlankLines: true
+    skipComments: true
 
-  prettier/prettier:
+  max-lines:
   - error
-  - semi: false
-    singleQuote: true
+  - max: 200
 
-  "@typescript-eslint/member-delimiter-style":
+  import/no-default-export:
   - error
-  - multiline:
-      delimiter: none
-      requireLast: false
-    singleline:
-      delimiter: comma
-      requireLast: false
+
+  import/no-unresolved:
+  - off
+
   "@typescript-eslint/member-ordering":
   - error
 
@@ -60,18 +45,25 @@ rules:
   - error
   - properties: never
 
-  import/prefer-default-export:
-  - 'off'
-
-  import/extensions:
-  - 'off'
-
-  no-underscore-dangle:
+  import/order:
   - error
-  - allowAfterThis: true
+  - groups:
+    - index
+    - sibling
+    - parent
+    - internal
+    - external
+    - builtin
+    - object
+    pathGroups:
+      - pattern: ~/**
+        group: external
+    alphabetize:
+      order: asc
+      caseInsensitive: true
+    newlines-between: always
 
-  es5/no-arrow-functions:
-  - off
-
-settings:
-  import/resolver: webpack
+  prettier/prettier:
+  - error
+  - semi: false
+    singleQuote: true
