@@ -1,19 +1,24 @@
 {
   "manifest_version": 2,
-  "name": "Confluence Better Pagetree",
+  "name": "Confluence Better Pagetree2",
   "version": "0.1.0",
   "description": "Replace sidebar pagetree. This extension enables tree incremental search",
   "author": "kissy0601",
   "content_scripts": [
     {
       "matches": ["https://*/*"],
-      "js": ["scripts/content-script.bundle.js"]
+      "js": ["index.bundle.js"]
     }
   ],
   "permissions": ["storage", "activeTab"],
   "icons": {
-    "16": "icons/icon.png",
-    "48": "icons/icon.png",
-    "128": "icons/icon.png"
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "commands": {
+    "_execute_page_action": {
+      "description": "拡張機能を有効にします"
+    }
   }
 }

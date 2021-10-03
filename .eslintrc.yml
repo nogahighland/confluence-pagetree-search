@@ -1,0 +1,77 @@
+---
+env:
+  browser: true
+  es6: true
+
+extends:
+- plugin:vue/essential
+- plugin:prettier/recommended
+- plugin:import/recommended
+
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+
+parserOptions:
+  ecmaVersion: 11
+  parser: "@typescript-eslint/parser"
+  sourceType: module
+
+plugins:
+- vue
+- "@typescript-eslint"
+
+rules:
+  object-curly-newline:
+  - 'off'
+
+  class-methods-use-this:
+  - 'off'
+
+  no-plusplus:
+  - 'off'
+
+  import/extensions:
+  - error
+  - never
+  - vue: never
+    ts: never
+
+  prettier/prettier:
+  - error
+  - semi: false
+    singleQuote: true
+
+  "@typescript-eslint/member-delimiter-style":
+  - error
+  - multiline:
+      delimiter: none
+      requireLast: false
+    singleline:
+      delimiter: comma
+      requireLast: false
+  "@typescript-eslint/member-ordering":
+  - error
+
+  "@typescript-eslint/explicit-function-return-type":
+  - error
+
+  camelcase:
+  - error
+  - properties: never
+
+  import/prefer-default-export:
+  - 'off'
+
+  import/extensions:
+  - 'off'
+
+  no-underscore-dangle:
+  - error
+  - allowAfterThis: true
+
+  es5/no-arrow-functions:
+  - off
+
+settings:
+  import/resolver: webpack
