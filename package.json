@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint src/**/*.{ts,vue}"
+  },
   "devDependencies": {
     "@types/chrome": "^0.0.157",
     "@types/copy-webpack-plugin": "^8.0.1",
