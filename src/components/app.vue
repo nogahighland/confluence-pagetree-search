@@ -1,5 +1,5 @@
 <template lang="pug">
-.hoge
+.hoge page tree
 </template>
 
 <style lang="scss" scoped>
