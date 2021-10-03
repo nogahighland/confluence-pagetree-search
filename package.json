@@ -39,5 +39,9 @@
   "volta": {
     "node": "14.17.6",
     "yarn": "1.22.11"
+  },
+  "dependencies": {
+    "vuex": "^3.6.2",
+    "vuex-module-decorators": "^1.0.1"
   }
 }
