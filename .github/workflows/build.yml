@@ -20,4 +20,5 @@ jobs:
         with:
           node-version: 14.16.1 # voltaと合わせる
       - run: yarn install
+      - run: yarn lint
       - run: yarn run webpack
