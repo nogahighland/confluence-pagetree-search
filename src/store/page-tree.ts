@@ -10,7 +10,7 @@ import { store } from '@/store'
 
 @Module({ dynamic: true, store, name: 'page-tree', namespaced: true })
 class PageTree extends VuexModule {
-  private _query: string | null = null
+  private _query: string | null = 'aaaaa'
   private _openNodeId: string | null = null
   private _currentNodeId: string | null = null
 
