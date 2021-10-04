@@ -20,7 +20,14 @@ export default {
     rules: [
       {
         test: /\.ts$/,
-        loader: 'ts-loader'
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              appendTsSuffixTo: [/\.vue$/]
+            }
+          }
+        ]
       },
       {
         test: /\.vue$/,
