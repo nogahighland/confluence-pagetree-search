@@ -1,7 +1,7 @@
-import { pageTree } from './page-tree'
-
 import Vue from 'vue'
 import Vuex from 'vuex'
+
+import { pageTree } from '@/store/page-tree'
 
 Vue.use(Vuex)
 

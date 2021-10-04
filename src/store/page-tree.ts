@@ -1,5 +1,3 @@
-import { store } from '.'
-
 import {
   Module,
   VuexModule,
@@ -7,6 +5,8 @@ import {
   Action,
   getModule
 } from 'vuex-module-decorators'
+
+import { store } from '@/store'
 
 @Module({ dynamic: true, store, name: 'page-tree', namespaced: true })
 class PageTree extends VuexModule {
