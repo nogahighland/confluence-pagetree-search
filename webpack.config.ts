@@ -1,7 +1,9 @@
-import path from 'path'
 import copy from 'copy-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
 
+import path from 'path'
+
+/* eslint-disable import/no-default-export */
 export default {
   mode: 'development',
 
@@ -18,11 +20,18 @@ export default {
     rules: [
       {
         test: /\.ts$/,
-        loader: 'ts-loader',
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              appendTsSuffixTo: [/\.vue$/]
+            }
+          }
+        ]
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
+        loader: 'vue-loader'
       },
       {
         test: /\.pug/,
@@ -52,6 +61,9 @@ export default {
   ],
 
   resolve: {
-    extensions: ['.vue', '.ts', '.js']
+    extensions: ['.vue', '.ts', '.js'],
+    alias: {
+      '@': path.resolve('./src')
+    }
   }
 }
