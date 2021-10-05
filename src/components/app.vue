@@ -1,5 +1,5 @@
 <template lang="pug">
-.hoge page tree {{ query }}
+.hoge page tree {{ root }}
 </template>
 
 <script lang="ts">
@@ -8,16 +8,16 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 import { pageTree } from '@/store/page-tree'
+import { Root } from '@/types'
+
 @Component
 export default class App extends Vue {
-  get query(): string | null {
-    return pageTree.query
+  mounted(): void {
+    pageTree.fetchTree()
   }
 
-  mounted(): void {
-    setTimeout(() => {
-      pageTree.setQuery('iiiiii')
-    }, 1000)
+  get root(): Root | null {
+    return pageTree.root
   }
 }
 </script>
