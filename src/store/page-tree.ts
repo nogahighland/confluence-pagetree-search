@@ -6,58 +6,34 @@ import {
   getModule
 } from 'vuex-module-decorators'
 
+import { ConfluenceApi } from '@/classes/confluence-api'
+import { DOMUtils } from '@/classes/utils/dom-utils'
 import { store } from '@/store'
+import { Root, Tree } from '@/types'
 
 @Module({ dynamic: true, store, name: 'page-tree', namespaced: true })
 class PageTree extends VuexModule {
-  private _query: string | null = 'aaaaa'
-  private _openNodeId: string | null = null
-  private _currentNodeId: string | null = null
+  private _root: Root | null = null
 
   @Action({ rawError: true })
-  setQuery(query: string): void {
-    this._setQuery(query)
-  }
-
-  @Action({ rawError: true })
-  setOpenNodeId(nodeId: string): void {
-    this._setOpenNodeId(nodeId)
-  }
-
-  @Action({ rawError: true })
-  setCurrentNodeId(nodeId: string): void {
-    this._setCurrentNodeId(nodeId)
-  }
-
-  @Mutation
-  private _setQuery(query: string): void {
-    this._query = query
-  }
-
-  @Mutation
-  private _setOpenNodeId(nodeId: string): void {
-    this._openNodeId = nodeId
-  }
-
-  @Mutation
-  private _setCurrentNodeId(nodeId: string): void {
-    this._currentNodeId = nodeId
-  }
-
-  get queryRegexp(): RegExp | undefined {
-    if (this._query) {
-      return new RegExp(this._query.split(' ').join('.*'), 'i')
+  async fetchTree(): Promise<void> {
+    const response = await ConfluenceApi.request()
+    const treeDom = new DOMParser().parseFromString(response.data, 'text/html')
+      .body.firstChild as HTMLUListElement
+    const nodes = DOMUtils.parseTree(treeDom)
+    if (nodes) {
+      const tree = { children: nodes }
+      this.setTree(tree)
     }
   }
 
-  get query(): string | null {
-    return this._query
+  @Mutation
+  private setTree(root: Root): void {
+    this._root = root
   }
-  get openNodeId(): string | null {
-    return this._openNodeId
-  }
-  get currentNodeId(): string | null {
-    return this._currentNodeId
+
+  get root(): Root | null {
+    return this._root
   }
 }
 
