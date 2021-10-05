@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint src/**/*.{ts,vue}"
+    "lint": "eslint src/**/*.{ts,vue}",
+    "test": "jest"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.157",
