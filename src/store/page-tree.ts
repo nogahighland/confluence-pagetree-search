@@ -7,7 +7,7 @@ import {
 } from 'vuex-module-decorators'
 
 import { ConfluenceApi } from '@/classes/confluence-api'
-import { DOMUtils } from '@/classes/utils/dom-utils'
+import { ChromeUtils, DOMUtils } from '@/classes/utils/'
 import { store } from '@/store'
 import { Root, Tree } from '@/types'
 

@@ -5,7 +5,7 @@ export class DOMUtils {
     return `/confluence/plugins/pagetree/naturalchildren.action?sort=position&hasRoot=true&pageId=${this.rootId}&startDepth=100`
   }
 
-  static get rootId(): string | undefined {
+  static get rootId(): string {
     const rootIdDiv = document.querySelector(
       '.plugin_pagetree > ul > div:first-child'
     ) as HTMLDivElement
@@ -14,7 +14,11 @@ export class DOMUtils {
       const match = rootIdDiv.id.match(/(\d+)/)
       if (match) {
         return match[0]
+      } else {
+        throw new Error('root idが見つかりません')
       }
+    } else {
+      throw new Error('root idが見つかりません')
     }
   }
 
@@ -57,7 +61,8 @@ export class DOMUtils {
           url,
           pageId,
           children,
-          address: [...parentAddress, i]
+          address: [...parentAddress, i],
+          timestamp: new Date().getTime()
         }
       }
     )
