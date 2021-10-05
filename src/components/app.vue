@@ -13,7 +13,8 @@ import { Root } from '@/types'
 @Component
 export default class App extends Vue {
   mounted(): void {
-    pageTree.fetchTree()
+    pageTree.restoreTree()
+    setTimeout(pageTree.forceSyncTree, 1000 * 60 * 10)
   }
 
   get root(): Root | null {
