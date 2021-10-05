@@ -10,12 +10,14 @@
     "skipLibCheck": true,
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["./src/types"]
   },
   "include": [
     "webpack.config.ts",
     "jest.config.ts",
     "src/**/*.ts",
+    "tests/**/*.ts",
     "src/**/*.vue"
   ],
   "exclude": [
