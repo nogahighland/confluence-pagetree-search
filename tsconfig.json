@@ -11,7 +11,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["./src/types"]
+    "types": ["./src/types", "chrome"]
   },
   "include": [
     "webpack.config.ts",

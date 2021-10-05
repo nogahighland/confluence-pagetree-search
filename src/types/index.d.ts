@@ -1,5 +1,6 @@
 export interface Root {
   children: Node[] | null
+  timestamp: number
 }
 
 interface Node {

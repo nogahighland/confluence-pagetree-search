@@ -8,7 +8,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.157",
+    "@types/chrome": "^0.0.158",
     "@types/copy-webpack-plugin": "^8.0.1",
     "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
@@ -46,6 +46,8 @@
     "yarn": "1.22.11"
   },
   "dependencies": {
+    "@types/moment": "^2.13.0",
+    "moment": "^2.29.1",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2",
     "vuex": "^3.6.2",
