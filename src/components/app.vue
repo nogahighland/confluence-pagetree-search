@@ -5,7 +5,7 @@
 <script lang="ts">
 /* eslint-disable import/no-default-export */
 
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 
 import { pageTree } from '@/store/page-tree'
 @Component
