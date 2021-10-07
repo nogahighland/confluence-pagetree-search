@@ -11,3 +11,8 @@ interface Node {
 }
 
 export type Tree = Root & Node
+
+export interface Token {
+  text: string
+  bold: boolean = false
+}

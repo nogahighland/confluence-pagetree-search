@@ -49,6 +49,13 @@ class Completions extends VuexModule {
     return this._query
   }
 
+  get queryGlobalRegexp(): RegExp | undefined {
+    if (!this._query) {
+      return
+    }
+    return new RegExp(`(${this._query.split(' ').join('|')})`, 'gi')
+  }
+
   get nodeList(): Tree[] {
     return this._nodeList
   }
