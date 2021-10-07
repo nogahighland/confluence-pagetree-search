@@ -17,7 +17,7 @@ import { Node } from '@/types'
 export default class App extends Vue {
   mounted(): void {
     pageTree.restoreTree()
-    setTimeout(pageTree.forceSyncTree, 1000 * 60 * 10)
+    setInterval(pageTree.forceSyncTree, 1000 * 60 * 10)
   }
 
   onInput(e: InputEvent): void {
