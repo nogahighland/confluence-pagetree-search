@@ -45,7 +45,6 @@ export class DOMUtils {
     return Array.from(
       list,
       (li, i): Tree => {
-        console.log({ i })
         const { pageId, link, subTree } = this.extractSubTree(li)
         let children = null
         if (subTree) {
