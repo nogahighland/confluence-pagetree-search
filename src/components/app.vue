@@ -1,5 +1,7 @@
 <template lang="pug">
-.hoge page tree {{ root }}
+div
+  input(@input='onInput')
+  li(v-for='(node, i) in nodeList' :key='i') {{ node.linkText }}
 </template>
 
 <script lang="ts">
@@ -7,18 +9,25 @@
 
 import { Component, Vue } from 'vue-property-decorator'
 
+import { completions } from '@/store/completions'
 import { pageTree } from '@/store/page-tree'
-import { Root } from '@/types'
+import { Node } from '@/types'
 
 @Component
 export default class App extends Vue {
   mounted(): void {
     pageTree.restoreTree()
-    setTimeout(pageTree.forceSyncTree, 1000 * 60 * 10)
+    setInterval(pageTree.forceSyncTree, 1000 * 60 * 10)
   }
 
-  get root(): Root | null {
-    return pageTree.root
+  onInput(e: InputEvent): void {
+    if (e.target instanceof HTMLInputElement) {
+      completions.changeQuery(e.target.value)
+    }
+  }
+
+  get nodeList(): Node[] {
+    return completions.nodeList
   }
 }
 </script>

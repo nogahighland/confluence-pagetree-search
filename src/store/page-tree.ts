@@ -9,8 +9,9 @@ import {
 
 import { ConfluenceApi } from '@/classes/confluence-api'
 import { ChromeUtils, DOMUtils } from '@/classes/utils/'
+import { TreeUtils } from '@/classes/utils/tree-utils'
 import { store } from '@/store'
-import { Root } from '@/types'
+import { Root, Tree } from '@/types'
 
 @Module({ dynamic: true, store, name: 'page-tree', namespaced: true })
 class PageTree extends VuexModule {
@@ -59,6 +60,14 @@ class PageTree extends VuexModule {
 
   get root(): Root | null {
     return this._root
+  }
+
+  get allNodeList(): Tree[] {
+    if (this._root) {
+      return TreeUtils.extractNodeList(this._root)
+    } else {
+      return []
+    }
   }
 }
 
