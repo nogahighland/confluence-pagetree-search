@@ -53,7 +53,7 @@ class Completions extends VuexModule {
     if (!this._query) {
       return
     }
-    return new RegExp(`(${this._query.split(' ').join('|')}`, 'gi')
+    return new RegExp(`(${this._query.split(' ').join('|')})`, 'gi')
   }
 
   get nodeList(): Tree[] {

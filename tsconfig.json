@@ -13,7 +13,7 @@
       "@/*": ["./src/*"]
     },
     "types": ["./src/types", "chrome", "jest"],
-    "lib": ["ESNext"]
+    "lib": ["ESNext", "DOM"]
   },
   "include": [
     "webpack.config.ts",

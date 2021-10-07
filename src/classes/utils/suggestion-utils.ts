@@ -6,7 +6,6 @@ export class SuggestionUtils {
     const match = [...text.matchAll(regexp)]
     let prevIndex = 0
     match.forEach(m => {
-      console.log(m)
       const token = m[0]
       if (!m.index) {
         tokens.push({ text: token, bold: true })
@@ -20,7 +19,6 @@ export class SuggestionUtils {
           bold: true
         })
       }
-      console.log({ prevIndex, token })
       prevIndex = m.index! + token.length
     })
 
