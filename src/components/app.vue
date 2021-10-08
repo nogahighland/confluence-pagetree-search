@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  input(@input='onInput')
+  input(@input='onInput' :disabled='!syncReady')
   suggestion(v-for='(node, i) in nodeList' :key='i' :node='node')
 </template>
 
@@ -31,6 +31,9 @@ export default class App extends Vue {
 
   get nodeList(): Node[] {
     return completions.nodeList
+  }
+  get syncReady(): boolean {
+    return pageTree.syncReady
   }
 }
 </script>

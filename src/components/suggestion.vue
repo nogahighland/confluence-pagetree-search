@@ -1,7 +1,9 @@
 <template lang="pug">
-div
+.root
   .parents
-    a.parent(v-for='(parent, i) in parents' :key='i' :href='parent.url') {{ parent.linkText }}
+    span.parent(v-for='(parent, i) in parents' :key='i')
+      a(:href='parent.url') {{ parent.linkText }}
+      span.arrow(v-if='i != parent.length - 1') >
   .suggestion
     a(:href='node.url')
       token-part(v-for='(token, i) in tokens' :key='i' :token='token')
@@ -25,12 +27,12 @@ export default class Suggestion extends Vue {
   private node!: Tree
 
   get tokens(): Token[] {
-    if (!completions.queryGlobalRegexp) {
+    if (!completions.query) {
       return []
     }
     return SuggestionUtils.getTokens(
       this.node.linkText,
-      completions.queryGlobalRegexp
+      SuggestionUtils.createEmphasizeRegexp(completions.query)
     )
   }
 
@@ -49,3 +51,26 @@ export default class Suggestion extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.root {
+  margin-bottom: 0.1em;
+  border-top: dashed 1px #aaaaaa;
+}
+.parents {
+  white-space: nowrap;
+}
+.parent {
+  font-size: x-small;
+  a {
+    color: #aaaaaa !important;
+  }
+}
+.arrow {
+  margin: 0 0.3em;
+}
+.suggestion {
+  font-size: small;
+  white-space: nowrap;
+}
+</style>

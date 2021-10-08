@@ -16,30 +16,33 @@ import { Root, Tree } from '@/types'
 @Module({ dynamic: true, store, name: 'page-tree', namespaced: true })
 class PageTree extends VuexModule {
   private _root: Root | null = null
+  private _syncReady = false
 
   @Action({ rawError: true })
   async restoreTree(): Promise<void> {
     const storedData = await ChromeUtils.getStoredData()
+    console.info({ storedData })
     if (storedData) {
       if (
         moment()
           .add(-10, 'm')
           .isAfter(moment(storedData.timestamp))
       ) {
-        console.log('restored data is old')
+        console.info('restored data is old')
         this.forceSyncTree()
       } else {
-        console.log('restored data is fresh')
+        console.info('restored data is fresh')
         this.setTree(storedData)
       }
     } else {
+      console.info('no data restored')
       this.forceSyncTree()
     }
   }
 
   @Action({ rawError: true })
   async forceSyncTree(): Promise<void> {
-    console.log('fetching')
+    console.info('fetching')
     const response = await ConfluenceApi.request()
     const treeDom = new DOMParser().parseFromString(response.data, 'text/html')
       .body.firstChild as HTMLUListElement
@@ -56,6 +59,7 @@ class PageTree extends VuexModule {
     const storedData: { [key: string]: Root } = {}
     storedData[DOMUtils.rootId] = root
     ChromeUtils.storeData(root)
+    this._syncReady = true
   }
 
   get root(): Root | null {
@@ -68,6 +72,10 @@ class PageTree extends VuexModule {
     } else {
       return []
     }
+  }
+
+  get syncReady(): boolean {
+    return this._syncReady
   }
 }
 
