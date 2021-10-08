@@ -35,14 +35,27 @@ class Completions extends VuexModule {
       this._nodeList = []
       return
     }
+
     let sourceNodeList: Tree[]
+
     if (this._nodeList.length) {
       sourceNodeList = this._nodeList
     } else {
       sourceNodeList = pageTree.allNodeList
     }
+
     const regexp = new RegExp(query.split(' ').join('.*'), 'i')
-    this._nodeList = sourceNodeList.filter(n => regexp.test(n.linkText))
+
+    let count = 0
+    for (const node of sourceNodeList) {
+      if (regexp.test(node.linkText)) {
+        this._nodeList.push(node)
+        count++
+      }
+      if (count >= 10) {
+        break
+      }
+    }
   }
 
   get query(): string | null {
