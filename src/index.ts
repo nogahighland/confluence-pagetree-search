@@ -1,7 +1,7 @@
 import Vue, { VNode } from 'vue'
 
 import App from '@/components/app.vue'
-import { addTargetBlank } from '@/lib/'
+import { addTargetBlank, hideOriginalPageTree } from '@/lib/'
 
 const appElement = document.createElement('div')
 appElement.id = 'page-tree-incremental-search'
@@ -9,6 +9,7 @@ const nav = document.querySelector('.acs-nav-sections')
 
 if (nav && nav.parentNode) {
   addTargetBlank()
+  hideOriginalPageTree()
   nav.parentNode.insertBefore(appElement, nav.nextElementSibling)
 
   const app = new Vue({

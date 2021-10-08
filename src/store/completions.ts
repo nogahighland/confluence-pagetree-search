@@ -47,21 +47,7 @@ class Completions extends VuexModule {
 
     const regexp = SuggestionUtils.createFilterRegexp(query)
 
-    if (!sourceNodeList.some(node => regexp.test(node.linkText))) {
-      this._nodeList = []
-      return
-    }
-
-    let count = 0
-    for (const node of sourceNodeList) {
-      if (regexp.test(node.linkText) && !this._nodeList.includes(node)) {
-        this._nodeList.push(node)
-        count++
-      }
-      if (count >= 10) {
-        break
-      }
-    }
+    this._nodeList = sourceNodeList.filter(n => regexp.test(n.linkText))
   }
 
   get query(): string | null {
@@ -69,7 +55,7 @@ class Completions extends VuexModule {
   }
 
   get nodeList(): Tree[] {
-    return this._nodeList
+    return this._nodeList.slice(0, 10)
   }
 }
 

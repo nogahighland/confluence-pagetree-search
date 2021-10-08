@@ -11,3 +11,11 @@ export const addTargetBlank = (): void => {
     }
   })
 }
+
+export const hideOriginalPageTree = (): void => {
+  document
+    .querySelectorAll(
+      '.acs-side-bar .page-tree, .acs-side-bar .plugin_pagetree'
+    )
+    .forEach(e => ((e as HTMLDivElement).style.display = 'none'))
+}
