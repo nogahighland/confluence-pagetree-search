@@ -1,12 +1,13 @@
 import { DOMUtils } from './dom-utils'
 
 import { Root } from '@/types'
+const chromeStorage = window.chrome.storage.local
 
 export class ChromeUtils {
   // TODO もっと汎用的にする
   static async getStoredData(): Promise<Root | undefined> {
     return new Promise(resolve => {
-      window.chrome.storage.local.get(DOMUtils.rootId, data => {
+      chromeStorage.get(DOMUtils.rootId, data => {
         resolve(data[DOMUtils.rootId])
       })
     })
@@ -16,6 +17,6 @@ export class ChromeUtils {
   static storeData(root: Root): void {
     const data: { [key: string]: Root } = {}
     data[DOMUtils.rootId] = root
-    window.chrome.storage.local.set(data)
+    chromeStorage.set(data)
   }
 }

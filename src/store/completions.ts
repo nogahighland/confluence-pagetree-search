@@ -32,7 +32,7 @@ class Completions extends VuexModule {
   createNodeList(): void {
     const query = this._query
     // https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
-    if (!query || encodeURI(query).split(/%..|./).length - 1 < 3) {
+    if (!query || encodeURI(query.trim()).split(/%..|./).length - 1 < 3) {
       this._nodeList = []
       return
     }
@@ -45,11 +45,16 @@ class Completions extends VuexModule {
       sourceNodeList = pageTree.allNodeList
     }
 
-    const regexp = new RegExp(query.split(' ').join('.*'), 'i')
+    const regexp = SuggestionUtils.createFilterRegexp(query)
+
+    if (!sourceNodeList.some(node => regexp.test(node.linkText))) {
+      this._nodeList = []
+      return
+    }
 
     let count = 0
     for (const node of sourceNodeList) {
-      if (regexp.test(node.linkText)) {
+      if (regexp.test(node.linkText) && !this._nodeList.includes(node)) {
         this._nodeList.push(node)
         count++
       }
@@ -63,15 +68,9 @@ class Completions extends VuexModule {
     return this._query
   }
 
-  get queryGlobalRegexp(): RegExp | undefined {
-    if (!this._query) {
-      return
-    }
-    return SuggestionUtils.createRegexp(this._query)
-  }
-
   get nodeList(): Tree[] {
     return this._nodeList
   }
 }
+
 export const completions = getModule(Completions)

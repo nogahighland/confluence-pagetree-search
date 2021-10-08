@@ -24,9 +24,15 @@ describe(SuggestionUtils, () => {
             bold: false
           }
         ]
-        expect(SuggestionUtils.getTokens('Abcde', /(a|cd)/gi)).toEqual(expected)
+        expect(
+          SuggestionUtils.getTokens(
+            'Abcde',
+            SuggestionUtils.createEmphasizeRegexp('a cd')
+          )
+        ).toEqual(expected)
       })
     })
+
     describe('"Abcde" vs "cd e"', () => {
       it('creates suggestion correctly', () => {
         const expected: Token[] = [
@@ -43,14 +49,111 @@ describe(SuggestionUtils, () => {
             bold: true
           }
         ]
-        expect(SuggestionUtils.getTokens('Abcde', /(cd|e)/gi)).toEqual(expected)
+        expect(
+          SuggestionUtils.getTokens(
+            'Abcde',
+            SuggestionUtils.createEmphasizeRegexp('cd e')
+          )
+        ).toEqual(expected)
+      })
+    })
+
+    describe('"aabcde" vs "ab e"', () => {
+      it('creates suggestion correctly', () => {
+        const expected: Token[] = [
+          {
+            text: 'a',
+            bold: false
+          },
+          {
+            text: 'ab',
+            bold: true
+          },
+          {
+            text: 'cd',
+            bold: false
+          },
+          {
+            text: 'e',
+            bold: true
+          }
+        ]
+        expect(
+          SuggestionUtils.getTokens(
+            'aabcde',
+            SuggestionUtils.createEmphasizeRegexp('ab e')
+          )
+        ).toEqual(expected)
+      })
+    })
+
+    describe('"aabcde" vs "a e"', () => {
+      it('creates suggestion correctly', () => {
+        const expected: Token[] = [
+          {
+            text: 'a',
+            bold: true
+          },
+          {
+            text: 'a',
+            bold: true
+          },
+          {
+            text: 'bcd',
+            bold: false
+          },
+          {
+            text: 'e',
+            bold: true
+          }
+        ]
+        expect(
+          SuggestionUtils.getTokens(
+            'aabcde',
+            SuggestionUtils.createEmphasizeRegexp('a e')
+          )
+        ).toEqual(expected)
       })
     })
   })
 
-  describe('createRegexp', () => {
-    it('正常に正規表現が作成される', () => {
-      expect(SuggestionUtils.createRegexp('a　b')).toEqual(/^(?=.*a)(?=.*b)/gi)
+  describe('createFilterRegexp', () => {
+    it('"a b" => /^(?=.*a)(?=.*b)/gi', () => {
+      expect(SuggestionUtils.createFilterRegexp('a　b')).toEqual(
+        /^(?=.*a)(?=.*b)/gi
+      )
+    })
+
+    it('"a b " => /^(?=.*a)(?=.*b)/gi', () => {
+      expect(SuggestionUtils.createFilterRegexp('a　b')).toEqual(
+        /^(?=.*a)(?=.*b)/gi
+      )
+    })
+
+    it('"a　b" matches "cbad"', () => {
+      expect(
+        SuggestionUtils.createFilterRegexp('a　b').test('cbad')
+      ).toBeTruthy()
+    })
+
+    it('"a　b" does not matche "cad"', () => {
+      expect(SuggestionUtils.createFilterRegexp('a　b').test('cad')).toBeFalsy()
+    })
+
+    it('"mico" does not matche "Microsoft"', () => {
+      expect(
+        SuggestionUtils.createFilterRegexp('mico').test('Microsoft')
+      ).toBeFalsy()
+    })
+  })
+
+  describe('createEmphasizeRegexp', () => {
+    it('"a b" => /(a|b)/gi', () => {
+      expect(SuggestionUtils.createEmphasizeRegexp('a　b')).toEqual(/(a|b)/gi)
+    })
+
+    it('"a b " => /(a|b)/gi', () => {
+      expect(SuggestionUtils.createEmphasizeRegexp('a　b ')).toEqual(/(a|b)/gi)
     })
   })
 })

@@ -25,12 +25,12 @@ export default class Suggestion extends Vue {
   private node!: Tree
 
   get tokens(): Token[] {
-    if (!completions.queryGlobalRegexp) {
+    if (!completions.query) {
       return []
     }
     return SuggestionUtils.getTokens(
       this.node.linkText,
-      completions.queryGlobalRegexp
+      SuggestionUtils.createEmphasizeRegexp(completions.query)
     )
   }
 
