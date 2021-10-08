@@ -27,4 +27,13 @@ export class SuggestionUtils {
     }
     return tokens
   }
+
+  static createRegexp(query: string): RegExp {
+    const r = query
+      .replace(/　/g, ' ') // eslint-disable-line no-irregular-whitespace
+      .split(/\s/)
+      .map(s => `(?=.*${s})`) // https://qiita.com/n4o847/items/dbcd0b8af3781d221424
+      .join('')
+    return new RegExp(`^${r}`, 'gi')
+  }
 }

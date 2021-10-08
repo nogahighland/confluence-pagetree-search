@@ -8,6 +8,7 @@ import {
   getModule
 } from 'vuex-module-decorators'
 
+import { SuggestionUtils } from '@/classes/utils/suggestion-utils'
 import { store } from '@/store'
 import { Tree } from '@/types'
 
@@ -66,7 +67,7 @@ class Completions extends VuexModule {
     if (!this._query) {
       return
     }
-    return new RegExp(`(${this._query.split(' ').join('|')})`, 'gi')
+    return SuggestionUtils.createRegexp(this._query)
   }
 
   get nodeList(): Tree[] {
