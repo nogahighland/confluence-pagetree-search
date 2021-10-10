@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  input(@input='onInput' :disabled='!syncReady')
+  input(@input='onInput' :disabled='!syncReady' :placeholder='placeholder')
   suggestion(v-for='(node, i) in nodeList' :key='i' :node='node')
 </template>
 
@@ -35,5 +35,26 @@ export default class App extends Vue {
   get syncReady(): boolean {
     return pageTree.syncReady
   }
+
+  get placeholder(): string {
+    if (this.syncReady) {
+      return 'キーワードを入力して下さい'
+    } else {
+      return 'ページ情報を取得中です'
+    }
+  }
 }
 </script>
+
+<style lang="scss">
+.input-container {
+  margin: 10px;
+}
+input {
+  width: 100%;
+  height: 2.3em;
+  border-radius: 3px;
+  border: 1px solid #c1c7d0;
+  margin: 10px 0px;
+}
+</style>
