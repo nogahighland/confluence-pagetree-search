@@ -46,6 +46,9 @@
     "yarn": "1.22.11"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
     "@types/moment": "^2.13.0",
     "moment": "^2.29.1",
     "vue-class-component": "^7.2.6",
