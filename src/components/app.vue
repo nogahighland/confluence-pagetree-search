@@ -1,7 +1,10 @@
 <template lang="pug">
-div
-  input(@input='onInput' :disabled='!syncReady' :placeholder='placeholder')
-  suggestion(v-for='(node, i) in nodeList' :key='i' :node='node')
+ #app
+    label(for='tree-incremental-search-input') Tree Search
+    font-awesome-icon(@click='sync' :class='{ rotating: !syncReady }' class='sync' icon="sync-alt")
+
+    input(@input='onInput' :disabled='!syncReady' :placeholder='placeholder' name='tree-incremental-search-input')
+    suggestion(v-for='(node, i) in nodeList' :key='i' :node='node')
 </template>
 
 <script lang="ts">
@@ -21,6 +24,10 @@ export default class App extends Vue {
   mounted(): void {
     pageTree.restoreTree()
     setInterval(pageTree.forceSyncTree, 1000 * 60 * 10)
+  }
+
+  sync(): void {
+    pageTree.forceSyncTree()
   }
 
   onInput(e: InputEvent): void {
@@ -46,7 +53,7 @@ export default class App extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .input-container {
   margin: 10px;
 }
@@ -56,5 +63,20 @@ input {
   border-radius: 3px;
   border: 1px solid #c1c7d0;
   margin: 10px 0px;
+}
+.sync {
+  cursor: pointer;
+  margin-left: 0.5em;
+}
+.rotating {
+  animation: r1 2s linear infinite;
+}
+@keyframes r1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

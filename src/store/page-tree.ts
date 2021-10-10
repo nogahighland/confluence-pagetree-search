@@ -43,6 +43,7 @@ class PageTree extends VuexModule {
   @Action({ rawError: true })
   async forceSyncTree(): Promise<void> {
     console.info('fetching')
+    this.setSyncing()
     const response = await ConfluenceApi.request()
     const treeDom = new DOMParser().parseFromString(response.data, 'text/html')
       .body.firstChild as HTMLUListElement
@@ -51,6 +52,11 @@ class PageTree extends VuexModule {
       const tree = { children: nodes, timestamp: new Date().getTime() } as Root
       this.setTree(tree)
     }
+  }
+
+  @Mutation
+  private setSyncing(): void {
+    this._syncReady = false
   }
 
   @Mutation
