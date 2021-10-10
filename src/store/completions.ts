@@ -12,10 +12,13 @@ import { SuggestionUtils } from '@/classes/utils/suggestion-utils'
 import { store } from '@/store'
 import { Tree } from '@/types'
 
+export const COMPLETION_LIMIT = 10
+
 @Module({ dynamic: true, store, name: 'completions', namespaced: true })
 class Completions extends VuexModule {
   private _query: string | null = null
   private _nodeList: Tree[] = []
+  private increment = false
 
   @Action
   changeQuery(query: string): void {
@@ -26,20 +29,21 @@ class Completions extends VuexModule {
   @Mutation
   setQuery(query: string): void {
     this._query = query
+    this.increment = query.length > this._query.length
   }
 
   @Mutation
   createNodeList(): void {
     const query = this._query
     // https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
-    if (!query || encodeURI(query.trim()).split(/%..|./).length - 1 < 3) {
+    if (!query) {
       this._nodeList = []
       return
     }
 
     let sourceNodeList: Tree[]
 
-    if (this._nodeList.length) {
+    if (this._nodeList.length && this.increment) {
       sourceNodeList = this._nodeList
     } else {
       sourceNodeList = pageTree.allNodeList
@@ -55,7 +59,11 @@ class Completions extends VuexModule {
   }
 
   get nodeList(): Tree[] {
-    return this._nodeList.slice(0, 10)
+    return this._nodeList.slice(0, COMPLETION_LIMIT)
+  }
+
+  get allNodeListCount(): number {
+    return this._nodeList.length
   }
 }
 
