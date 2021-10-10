@@ -43,6 +43,7 @@ export default class Suggestion extends Vue {
     }
     let base: Root | Tree = pageTree.root
     this.node.address.forEach(i => {
+      /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
       base = base.children![i]
       parents.push(base as Tree)
     })
