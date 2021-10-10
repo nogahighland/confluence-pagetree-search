@@ -4,6 +4,7 @@
     font-awesome-icon(@click='sync' :class='{ rotating: !syncReady }' class='sync' icon="sync-alt")
 
     input(@input='onInput' :disabled='!syncReady' :placeholder='placeholder' name='tree-incremental-search-input')
+    p(v-if='count') 全{{count}}件
     suggestion(v-for='(node, i) in nodeList' :key='i' :node='node')
 </template>
 
@@ -39,8 +40,13 @@ export default class App extends Vue {
   get nodeList(): Node[] {
     return completions.nodeList
   }
+
   get syncReady(): boolean {
     return pageTree.syncReady
+  }
+
+  get count(): number {
+    return completions.allNodeListCount
   }
 
   get placeholder(): string {

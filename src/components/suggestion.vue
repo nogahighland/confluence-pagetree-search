@@ -57,6 +57,11 @@ export default class Suggestion extends Vue {
 .root {
   margin-bottom: 0.1em;
   border-top: dashed 1px #aaaaaa;
+  min-height: 2em;
+  display: flex;
+  align-content: center;
+  flex-flow: column;
+  justify-content: center;
 }
 .parents {
   white-space: nowrap;
