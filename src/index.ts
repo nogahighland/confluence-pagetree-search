@@ -16,7 +16,7 @@ const nav = document.querySelector('.acs-nav-sections')
 
 if (nav && nav.parentNode) {
   addTargetBlank()
-  hideOriginalPageTree()
+  // hideOriginalPageTree()
   nav.parentNode.insertBefore(appElement, nav.nextElementSibling)
 
   const app = new Vue({
