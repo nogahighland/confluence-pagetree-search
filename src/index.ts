@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Vue, { VNode } from 'vue'
 
 import App from '@/components/app.vue'
-import { addTargetBlank } from '@/lib/'
+import { addTargetBlank, hideOriginalPageTree } from '@/lib/'
 
 library.add(faSyncAlt)
 
@@ -16,6 +16,9 @@ const nav = document.querySelector('.acs-nav-sections')
 
 if (nav && nav.parentNode) {
   addTargetBlank()
+  if (process.env.STORE) {
+    hideOriginalPageTree()
+  }
   nav.parentNode.insertBefore(appElement, nav.nextElementSibling)
 
   const app = new Vue({

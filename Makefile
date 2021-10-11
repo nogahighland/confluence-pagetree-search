@@ -4,3 +4,6 @@ create-zip:
 
 serve:
 	yarn run webpack --watch
+
+serve-for-store:
+	STORE=1 yarn run webpack --watch

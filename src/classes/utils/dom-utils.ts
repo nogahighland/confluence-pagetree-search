@@ -1,3 +1,5 @@
+import faker from 'faker'
+
 import { Tree } from '@/types'
 
 export class DOMUtils {
@@ -56,7 +58,7 @@ export class DOMUtils {
         const { linkText, url } = this.extractAnchor(a)
 
         return {
-          linkText,
+          linkText: process.env.STORE ? this.randomName : linkText,
           url,
           pageId,
           children,
@@ -99,5 +101,9 @@ export class DOMUtils {
     const url = a.href
 
     return { linkText, url }
+  }
+
+  private static get randomName(): string {
+    return faker.lorem.words()
   }
 }
