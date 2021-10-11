@@ -1,16 +1,13 @@
-# Confluence better page tree
+# Confluence Pagetree Search
 
-This is a chrome extension that replaces confluence page tree.
+This is a chrome extension that add a feature to search confluence pagetree by names.
 
 The extension can be installed here:
 https://chrome.google.com/webstore/detail/confluence-better-pagetre/impgjbnbnocheogednhacjjofkkkbpce/related
 
 ## Screenshots
 
-
-default|filtered|expanded
----|---|---
-![Untitled 001](https://user-images.githubusercontent.com/1780339/88995204-089d5200-d325-11ea-97af-574f938c4ce7.jpeg)|![Untitled 003](https://user-images.githubusercontent.com/1780339/88995211-0b984280-d325-11ea-8e74-412e343a51c6.jpeg)|![Untitled 002](https://user-images.githubusercontent.com/1780339/88995209-0affac00-d325-11ea-97bd-e1d7c6350d77.jpeg)
+https://user-images.githubusercontent.com/1780339/136763140-d18000d3-b736-468b-b6a7-c4b663e9e71d.mov
 
 ## Getting Started
 
@@ -18,20 +15,34 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You need `yarn` to develop this extension.
+If you are using [volta](https://volta.sh/) you can get the disirable `node` and `yarn` versions automatically. If you don't, please have a look at package.json's `volta` values.
 
-```
-yarn --version
-1.16.0
+```json
+  "volta": {
+    "node": "14.17.6",
+    "yarn": "1.22.11"
+  },
 ```
 
 ### Installing
 
-After you install `yarn`, then install dependencies under `node_modules/` and build the javascript & vue resource under `src/` directory.
+If you are using volta, the below line automatically set-ups your environment.
 
+```sh
+$ volta setup
 ```
-yarn install
-yarn run webpack --watch
+
+After you install `yarn`, then install dependencies under `node_modules/` and build the TypeScript & vue resources under `src/` directory.
+
+```sh
+$ yarn install
+$ yarn run webpack --watch
+```
+
+To take screenshot, you can use `STORE=1` environment variable to hide your own space's confidential information.
+
+```sh
+$ STORE=1 yarn run webpack --watch
 ```
 
 After running above command, installable unpacked extension is built under `dist/` directory.
