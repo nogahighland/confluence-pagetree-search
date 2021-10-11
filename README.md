@@ -1,5 +1,8 @@
 # Confluence Pagetree Search
 
+![](https://github.com/nogahighland/confluence-pagetree-search/actions/workflows/build.yml/badge.svg?branch=master)
+
+
 This is a chrome extension that add a feature to search confluence pagetree by names.
 
 The extension can be installed here:
