@@ -1,5 +1,6 @@
 import copy from 'copy-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
+import { EnvironmentPlugin } from 'webpack'
 
 import path from 'path'
 
@@ -57,7 +58,8 @@ export default {
         }
       ]
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new EnvironmentPlugin({ STORE: false })
   ],
 
   resolve: {
