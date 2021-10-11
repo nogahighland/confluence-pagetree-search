@@ -62,8 +62,6 @@ class PageTree extends VuexModule {
   @Mutation
   private setTree(root: Root): void {
     this._root = root
-    const storedData: { [key: string]: Root } = {}
-    storedData[DOMUtils.rootId] = root
     ChromeUtils.storeData(root)
     this._syncReady = true
   }
