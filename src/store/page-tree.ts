@@ -20,19 +20,19 @@ class PageTree extends VuexModule {
 
   @Action({ rawError: true })
   async restoreTree(): Promise<void> {
-    const storedData = await ChromeUtils.getStoredData()
-    console.info({ storedData })
-    if (storedData) {
+    const restoredData = await ChromeUtils.getStoredData()
+    console.info({ storedData: restoredData })
+    if (restoredData) {
       if (
         moment()
           .add(-10, 'm')
-          .isAfter(moment(storedData.timestamp))
+          .isAfter(moment(restoredData.timestamp))
       ) {
         console.info('restored data is old')
         this.forceSyncTree()
       } else {
         console.info('restored data is fresh')
-        this.setTree(storedData)
+        this.setTree(restoredData)
       }
     } else {
       console.info('no data restored')
@@ -62,8 +62,6 @@ class PageTree extends VuexModule {
   @Mutation
   private setTree(root: Root): void {
     this._root = root
-    const storedData: { [key: string]: Root } = {}
-    storedData[DOMUtils.rootId] = root
     ChromeUtils.storeData(root)
     this._syncReady = true
   }
