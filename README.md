@@ -83,4 +83,5 @@ version|description
 0.0.10|Scroll to current page #19
 0.0.11|Fix scroll, Fake text for store screenshots #19, #20
 2.0.1|Confluence Better Pagetree is now Confluence Tree Search extension.
+2.0.2|Change icon & resolve #198 #199 #200 #202 (Attomerge & security setting)
 
