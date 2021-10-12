@@ -5,11 +5,6 @@ updates:
   schedule:
     interval: daily
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: webpack
-    versions:
-    - 5.34.0
-    - 5.35.0
-  - dependency-name: css-loader
-    versions:
-    - 5.2.1
+  labels:
+    - dependencies
+    - automerge
