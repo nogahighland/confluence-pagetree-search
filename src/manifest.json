@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Confluence Pagetree Search",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Add a feature to search page tree by its name.",
   "author": "kissy0601",
   "content_scripts": [
