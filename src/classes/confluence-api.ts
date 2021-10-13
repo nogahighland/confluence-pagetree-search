@@ -1,9 +1,9 @@
-import axios, { AxiosResponse } from 'axios'
+import { Constants } from './constants'
 
-import { DOMUtils } from '@/classes/utils/'
+import axios, { AxiosResponse } from 'axios'
 
 export class ConfluenceApi {
   static async request(): Promise<AxiosResponse<string>> {
-    return axios.get(DOMUtils.treeUrl)
+    return axios.get(Constants.TREE_URL)
   }
 }

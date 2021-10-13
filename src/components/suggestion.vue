@@ -55,28 +55,36 @@ export default class Suggestion extends Vue {
 
 <style lang="scss" scoped>
 .root {
+  padding: 0.2em;
   margin-bottom: 0.1em;
-  border-top: dashed 1px #aaaaaa;
-  min-height: 2em;
+  min-height: 3em;
   display: flex;
   align-content: center;
   flex-flow: column;
   justify-content: center;
-}
-.parents {
-  white-space: nowrap;
-}
-.parent {
-  font-size: x-small;
-  a {
-    color: #aaaaaa !important;
+  background-color: #fafafa;
+
+  :hover {
+    background-color: #eaeaea;
   }
-}
-.arrow {
-  margin: 0 0.3em;
-}
-.suggestion {
-  font-size: small;
-  white-space: nowrap;
+
+  .parents {
+    white-space: nowrap;
+
+    .parent {
+      font-size: x-small;
+      a {
+        color: #aaaaaa !important;
+      }
+    }
+    .arrow {
+      margin: 0 0.3em;
+    }
+  }
+
+  .suggestion {
+    font-size: small;
+    white-space: nowrap;
+  }
 }
 </style>

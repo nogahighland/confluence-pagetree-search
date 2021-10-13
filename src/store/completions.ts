@@ -19,11 +19,19 @@ class Completions extends VuexModule {
   private _query: string | null = null
   private _nodeList: Tree[] = []
   private increment = false
+  private _focus = 0
 
   @Action
   changeQuery(query: string): void {
     this.setQuery(query)
     this.createNodeList()
+  }
+
+  @Action
+  setFocus(focus: boolean): void {
+    if (focus) {
+      this.changeFocus()
+    }
   }
 
   @Mutation
@@ -54,6 +62,11 @@ class Completions extends VuexModule {
     this._nodeList = sourceNodeList.filter(n => regexp.test(n.linkText))
   }
 
+  @Mutation
+  changeFocus(): void {
+    this._focus = Math.random()
+  }
+
   get query(): string | null {
     return this._query
   }
@@ -64,6 +77,10 @@ class Completions extends VuexModule {
 
   get allNodeListCount(): number {
     return this._nodeList.length
+  }
+
+  get focus(): number {
+    return this._focus
   }
 }
 
