@@ -5,8 +5,7 @@ const child1_1_1: Tree = {
   url: 'url1-1-1',
   address: [0, 1, 1, 1],
   pageId: 'pageId1-1-1',
-  children: [],
-  timestamp: 100
+  children: []
 }
 
 const child1_1: Tree = {
@@ -14,8 +13,7 @@ const child1_1: Tree = {
   url: 'url1-1',
   address: [0, 1, 1],
   pageId: 'pageId1-1',
-  children: [child1_1_1],
-  timestamp: 100
+  children: [child1_1_1]
 }
 
 const child1: Tree = {
@@ -23,8 +21,7 @@ const child1: Tree = {
   url: 'url1',
   address: [0, 1],
   pageId: 'pageId1',
-  children: [child1_1],
-  timestamp: 100
+  children: [child1_1]
 }
 
 const child2: Tree = {
@@ -32,8 +29,7 @@ const child2: Tree = {
   url: 'url2',
   address: [0, 2],
   pageId: 'pageId2',
-  children: [],
-  timestamp: 100
+  children: []
 }
 
 export const root: Root = {

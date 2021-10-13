@@ -62,8 +62,7 @@ export class DOMUtils {
           url,
           pageId,
           children,
-          address: [...parentAddress, i],
-          timestamp: new Date().getTime()
+          address: [...parentAddress, i]
         }
       }
     )

@@ -10,7 +10,7 @@ interface Node {
   address: number[]
 }
 
-export type Tree = Root & Node
+export type Tree = Node & Omit<Root, 'timestamp'>
 
 export interface Token {
   text: string
