@@ -24,7 +24,7 @@ import { Node } from '@/types'
 export default class App extends Vue {
   mounted(): void {
     pageTree.restoreTree()
-    setInterval(pageTree.forceSyncTree, 1000 * 60 * 10)
+    setInterval(pageTree.restoreTree, 1000 * 60 * 10)
   }
 
   sync(): void {

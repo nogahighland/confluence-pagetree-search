@@ -21,7 +21,6 @@ class PageTree extends VuexModule {
   @Action({ rawError: true })
   async restoreTree(): Promise<void> {
     const restoredData = await ChromeUtils.getStoredData()
-    console.info({ storedData: restoredData })
     if (restoredData) {
       if (
         moment()
