@@ -11,9 +11,13 @@ export class ChromeUtils {
   static async getStoredData(): Promise<Root | undefined> {
     return new Promise(resolve => {
       chromeStorage.get(Constants.ROOT_ID, data => {
-        const buffer = data[Constants.ROOT_ID]
-        const root = CompressingUtils.inflate(buffer)
-        resolve(root)
+        const buffer: string | undefined = data[Constants.ROOT_ID]
+        if (buffer) {
+          const root = CompressingUtils.inflate(buffer)
+          resolve(root)
+        } else {
+          resolve(undefined)
+        }
       })
     })
   }
