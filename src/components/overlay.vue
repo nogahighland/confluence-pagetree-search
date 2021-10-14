@@ -29,8 +29,8 @@ export default class Overlay extends Vue {
   width: 100%;
   height: 100%;
   background: rgba($color: #000000, $alpha: 0.3);
-  position: absolute;
-  z-index: 11; // サイドバーより上
+  position: fixed;
+  z-index: 101; // ヘッダーより上
   padding-top: 100px;
 }
 
