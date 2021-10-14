@@ -1,4 +1,5 @@
 import { Constants } from './classes/constants'
+import { addTargetBlank } from './lib'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
@@ -28,4 +29,6 @@ if (nav && nav.parentNode) {
 
   appElement.appendChild(app.$el)
   document.body.appendChild(appElement)
+
+  addTargetBlank()
 }
