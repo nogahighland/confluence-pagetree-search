@@ -3,12 +3,13 @@
   .overlay(:class='classes' @click.stop='onOverlayClick')
     #confluence-pagetree-search(@click.stop)
       input(
-        @input='onInput'
+        name='tree-incremental-search-input'
+        ref='input'
         :disabled='!syncReady'
         :placeholder='placeholder'
-        name='tree-incremental-search-input'
         :values='focus'
-        ref='aaa'
+        autocomplete='off'
+        @input='onInput'
         @keydown.down='onDown'
         @keydown.up='onUp'
         @keydown.enter='onEnter'
@@ -113,9 +114,9 @@ export default class App extends Vue {
   }
 
   get focus(): number {
-    if (this.$refs.aaa) {
+    if (this.$refs.input) {
       setTimeout(() => {
-        ;(this.$refs.aaa as HTMLInputElement).focus()
+        ;(this.$refs.input as HTMLInputElement).focus()
       }, 1)
     }
     return completions.focus
