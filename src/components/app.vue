@@ -1,13 +1,24 @@
 <template lang="pug">
-#app(v-shortkey='{ on:["meta", "k"], off:["esc"] }' @shortkey='switchVisibility')
-  .overlay(:class='classes' @click.stop='switchVisibility')
-    #confluence-pagetree-search
-      label(for='tree-incremental-search-input') Tree Search
-      font-awesome-icon(@click='sync' :class='{ rotating: !syncReady }' class='sync' icon="sync-alt")
+#app(v-shortkey='{ on:["meta", "k"], off:["esc"] }' @shortkey='onShortkey')
+  .overlay(:class='classes' @click.stop='onOverlayClick')
+    #confluence-pagetree-search(@click.stop)
+      input(
+        @input='onInput'
+        :disabled='!syncReady'
+        :placeholder='placeholder'
+        name='tree-incremental-search-input'
+        :values='focus'
+        ref='aaa'
+        @keydown.down='onDown'
+        @keydown.up='onUp'
+        @keydown.enter='onEnter'
+      )
+      .sync-container
+        font-awesome-icon.sync(@click='sync' :class='{ rotating: !syncReady }' icon="sync-alt")
 
-      input(@input='onInput' :disabled='!syncReady' :placeholder='placeholder' name='tree-incremental-search-input' :values='focus' ref='aaa')
-      p(v-if='count') 全{{count}}件
-      suggestion(v-for='(node, i) in nodeList' :key='i' :node='node')
+      p.count(v-if='count') 全{{count}}件
+
+      suggestion(v-for='(node, i) in nodeList' :key='i' :index='i' :node='node')
   confluence(:originalBody='originalBody')
 </template>
 
@@ -42,7 +53,7 @@ export default class App extends Vue {
     return { 'search-on': this.display, 'search-off': !this.display }
   }
 
-  switchVisibility(onoff: { srcKey: 'on' | 'off' }): void {
+  onShortkey(onoff: { srcKey: 'on' | 'off' }): void {
     switch (onoff.srcKey) {
       case 'on':
         this.display = !this.display
@@ -51,15 +62,34 @@ export default class App extends Vue {
         this.display = false
         break
     }
-    if (this.display) {
-      completions.setFocus(this.display)
-    }
+    completions.setFocus(this.display)
+  }
+
+  onOverlayClick(): void {
+    this.display = !this.display
+    completions.setFocus(this.display)
   }
 
   onInput(e: InputEvent): void {
     if (e.target instanceof HTMLInputElement) {
       completions.changeQuery(e.target.value)
     }
+  }
+
+  onDown(): void {
+    completions.incrementSelectIndex()
+  }
+
+  onUp(): void {
+    completions.decrementSelectIndex()
+  }
+
+  onEnter(e: KeyboardEvent): void {
+    // 日本語確定は229
+    if (e.keyCode != 13) {
+      return
+    }
+    location.href = completions.nodeList[completions.selectIndex].url
   }
 
   get nodeList(): Node[] {
@@ -90,6 +120,10 @@ export default class App extends Vue {
     }
     return completions.focus
   }
+
+  get selectIndex(): number {
+    return completions.selectIndex
+  }
 }
 </script>
 
@@ -111,25 +145,42 @@ export default class App extends Vue {
   padding-top: 100px;
 
   #confluence-pagetree-search {
-    width: 50%;
+    width: 40%;
     margin: 0 auto;
     top: 100px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding-bottom: 10px;
 
     input {
       width: 100%;
-      height: 3em;
-      border-radius: 3px;
-      border: 1px solid #c1c7d0;
-      margin: 10px 0px;
-      font-size: large;
+      height: 2.5em;
+      margin: 10px 0;
+      border: none;
+      font-size: x-large;
+      padding: 0 1em;
+      font-weight: bolder;
+      box-sizing: border-box;
     }
-
-    .sync {
-      cursor: pointer;
-      margin-left: 0.5em;
+    input:focus,
+    input:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
     }
-    .rotating {
-      animation: r1 2s linear infinite;
+    .count {
+      margin-left: 1em;
+    }
+    .sync-container {
+      height: 25px;
+      text-align: end;
+      padding-right: 10px;
+      .sync {
+        cursor: pointer;
+        margin-left: 0.5em;
+      }
+      .rotating {
+        animation: r1 2s linear infinite;
+      }
     }
 
     @keyframes r1 {

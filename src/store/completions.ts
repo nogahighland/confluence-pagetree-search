@@ -20,6 +20,7 @@ class Completions extends VuexModule {
   private _nodeList: Tree[] = []
   private increment = false
   private _focus = 0
+  private _selectIndex = 0
 
   @Action
   changeQuery(query: string): void {
@@ -31,7 +32,24 @@ class Completions extends VuexModule {
   setFocus(focus: boolean): void {
     if (focus) {
       this.changeFocus()
+    } else {
+      this.setSelectIndex0()
     }
+  }
+
+  @Action
+  incrementSelectIndex(): void {
+    this.changeSelectIndex(1)
+  }
+
+  @Action
+  decrementSelectIndex(): void {
+    this.changeSelectIndex(-1)
+  }
+
+  @Action
+  resetSelectIndex(): void {
+    this.setSelectIndex0()
   }
 
   @Mutation
@@ -67,6 +85,16 @@ class Completions extends VuexModule {
     this._focus = Math.random()
   }
 
+  @Mutation
+  changeSelectIndex(amount: number): void {
+    this._selectIndex += amount
+  }
+
+  @Mutation
+  setSelectIndex0(): void {
+    this._selectIndex = 0
+  }
+
   get query(): string | null {
     return this._query
   }
@@ -81,6 +109,17 @@ class Completions extends VuexModule {
 
   get focus(): number {
     return this._focus
+  }
+
+  get selectIndex(): number {
+    if (this._selectIndex > 0) {
+      return this._selectIndex % this.nodeList.length
+    } else {
+      return (
+        Math.abs(this.nodeList.length + this._selectIndex) %
+        this.nodeList.length
+      )
+    }
   }
 }
 

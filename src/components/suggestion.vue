@@ -1,5 +1,5 @@
 <template lang="pug">
-.root
+.root(:class='rootClasses')
   .parents
     span.parent(v-for='(parent, i) in parents' :key='i')
       a(:href='parent.url') {{ parent.linkText }}
@@ -25,6 +25,8 @@ import { Root, Token, Tree } from '@/types'
 export default class Suggestion extends Vue {
   @Prop()
   private node!: Tree
+  @Prop()
+  private index!: number
 
   get tokens(): Token[] {
     if (!completions.query) {
@@ -50,29 +52,33 @@ export default class Suggestion extends Vue {
     parents.pop()
     return parents
   }
+
+  get rootClasses(): { focused: boolean } {
+    return { focused: completions.selectIndex == this.index }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .root {
-  padding: 0.2em;
-  margin-bottom: 0.1em;
   min-height: 3em;
   display: flex;
   align-content: center;
   flex-flow: column;
   justify-content: center;
-  background-color: #fafafa;
+  font-size: larger;
+  padding: 0.2em 0.7em 0;
 
-  :hover {
+  .root:hover {
     background-color: #eaeaea;
   }
 
   .parents {
     white-space: nowrap;
+    overflow: hidden;
 
     .parent {
-      font-size: x-small;
+      font-size: small;
       a {
         color: #aaaaaa !important;
       }
@@ -83,8 +89,12 @@ export default class Suggestion extends Vue {
   }
 
   .suggestion {
-    font-size: small;
     white-space: nowrap;
+    overflow: hidden;
   }
+}
+
+.focused {
+  background-color: #e9e9e9;
 }
 </style>
