@@ -1,6 +1,6 @@
 <template lang="pug">
-#app(v-shortkey='{ on:["meta", "k"], off:["esc"] }' @shortkey='onShortkey')
-  .overlay(:class='classes' @click.stop='onOverlayClick')
+#app(v-shortkey='{ "meta+k":["meta", "k"], esc:["esc"] }' @shortkey='onShortkey')
+  overlay
     #confluence-pagetree-search(@click.stop)
       input(
         name='tree-incremental-search-input'
@@ -8,6 +8,7 @@
         :disabled='!syncReady'
         :placeholder='placeholder'
         :values='focus'
+        :value='query'
         autocomplete='off'
         @input='onInput'
         @keydown.down='onDown'
@@ -29,17 +30,18 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 import Confluence from '@/components/confluence.vue'
+import Overlay from '@/components/overlay.vue'
 import Suggestion from '@/components/suggestion.vue'
 import { completions } from '@/store/completions'
+import { overlay } from '@/store/overlay'
 import { pageTree } from '@/store/page-tree'
 import { Node } from '@/types'
 
 @Component({
-  components: { Suggestion, Confluence }
+  components: { Suggestion, Confluence, Overlay }
 })
 export default class App extends Vue {
   private originalBody: string | null = null
-  private display = false
 
   mounted(): void {
     pageTree.restoreTree()
@@ -50,25 +52,17 @@ export default class App extends Vue {
     pageTree.forceSyncTree()
   }
 
-  get classes(): { [key: string]: boolean } {
-    return { 'search-on': this.display, 'search-off': !this.display }
-  }
-
-  onShortkey(onoff: { srcKey: 'on' | 'off' }): void {
+  onShortkey(onoff: { srcKey: 'meta+k' | 'esc' }): void {
     switch (onoff.srcKey) {
-      case 'on':
-        this.display = !this.display
+      case 'meta+k':
+        overlay.setDisplay(!overlay.display)
         break
-      case 'off':
-        this.display = false
+      case 'esc':
+        overlay.setDisplay(false)
+        completions.changeQuery('')
         break
     }
-    completions.setFocus(this.display)
-  }
-
-  onOverlayClick(): void {
-    this.display = !this.display
-    completions.setFocus(this.display)
+    completions.setFocus(overlay.display)
   }
 
   onInput(e: InputEvent): void {
@@ -91,6 +85,10 @@ export default class App extends Vue {
       return
     }
     location.href = completions.nodeList[completions.selectIndex].url
+  }
+
+  get query(): string | null {
+    return completions.query
   }
 
   get nodeList(): Node[] {
@@ -129,68 +127,60 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.search-off {
-  display: none;
-}
-
-.search-on {
-  display: block;
-}
-
-.overlay {
-  width: 100%;
-  height: 100%;
-  background: rgba($color: #000000, $alpha: 0.3);
-  position: absolute;
-  z-index: 11; // サイドバーより上
-  padding-top: 100px;
-
-  #confluence-pagetree-search {
+#confluence-pagetree-search {
+  margin: 0 auto;
+  top: 100px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0 0 8px gray;
+  @media screen and (min-width: 480px) {
+    width: 90%;
+  }
+  @media screen and (min-width: 480px) and (max-width: 1500px) {
+    width: 60%;
+  }
+  @media screen and (min-width: 1500px) {
     width: 40%;
-    margin: 0 auto;
-    top: 100px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding-bottom: 10px;
+  }
 
-    input {
-      width: 100%;
-      height: 2.5em;
-      margin: 10px 0;
-      border: none;
-      font-size: x-large;
-      padding: 0 1em;
-      font-weight: bolder;
-      box-sizing: border-box;
+  input {
+    width: 100%;
+    height: 2.5em;
+    margin: 10px 0;
+    border: none;
+    font-size: x-large;
+    padding: 0 1em;
+    font-weight: bolder;
+    box-sizing: border-box;
+  }
+  input:focus,
+  input:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  .count {
+    margin-left: 1em;
+  }
+  .sync-container {
+    height: 25px;
+    text-align: end;
+    padding-right: 10px;
+    .sync {
+      cursor: pointer;
+      margin-left: 0.5em;
     }
-    input:focus,
-    input:focus-visible {
-      outline: none !important;
-      box-shadow: none !important;
+    .rotating {
+      animation: r1 2s linear infinite;
     }
-    .count {
-      margin-left: 1em;
-    }
-    .sync-container {
-      height: 25px;
-      text-align: end;
-      padding-right: 10px;
-      .sync {
-        cursor: pointer;
-        margin-left: 0.5em;
-      }
-      .rotating {
-        animation: r1 2s linear infinite;
-      }
-    }
+  }
 
-    @keyframes r1 {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
+  @keyframes r1 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 }

@@ -18,7 +18,7 @@ export const COMPLETION_LIMIT = 10
 class Completions extends VuexModule {
   private _query: string | null = null
   private _nodeList: Tree[] = []
-  private increment = false
+  private _increment = false
   private _focus = 0
   private _selectIndex = 0
 
@@ -55,7 +55,7 @@ class Completions extends VuexModule {
   @Mutation
   setQuery(query: string): void {
     this._query = query
-    this.increment = query.length > this._query.length
+    this._increment = query.length > this._query.length
   }
 
   @Mutation
@@ -69,7 +69,7 @@ class Completions extends VuexModule {
 
     let sourceNodeList: Tree[]
 
-    if (this._nodeList.length && this.increment) {
+    if (this._nodeList.length && this._increment) {
       sourceNodeList = this._nodeList
     } else {
       sourceNodeList = pageTree.allNodeList

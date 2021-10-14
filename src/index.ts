@@ -31,4 +31,8 @@ if (nav && nav.parentNode) {
   document.body.appendChild(appElement)
 
   addTargetBlank()
+
+  const originalHead = document.head.innerHTML
+  document.head.innerHTML = ''
+  document.head.innerHTML = originalHead
 }
