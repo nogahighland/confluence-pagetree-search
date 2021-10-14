@@ -113,6 +113,7 @@ export default class App extends Vue {
 
   get focus(): number {
     if (this.$refs.input) {
+      // 一瞬でもタイムラグが無いとfocusされないためtimeoutしている
       setTimeout(() => {
         ;(this.$refs.input as HTMLInputElement).focus()
       }, 1)

@@ -68,6 +68,27 @@ export class DOMUtils {
     )
   }
 
+  static get scripts(): HTMLScriptElement[] | undefined {
+    const existingScripts = document.querySelectorAll('script')
+    if (!existingScripts) {
+      return
+    }
+
+    return Array.from(existingScripts).flatMap(s => {
+      const script = (document.createElement('script') as unknown) as {
+        [key: string]: string
+      }
+      script.src = s.src
+      script.innerHTML = s.innerHTML
+      ;[...new Array(s.attributes.length)].forEach(i => {
+        /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion*/
+        const { name, value } = s.attributes.item(i)!
+        script[name] = value
+      })
+      return (script as unknown) as HTMLScriptElement
+    })
+  }
+
   private static extractSubTree(
     li: HTMLLIElement
   ): {

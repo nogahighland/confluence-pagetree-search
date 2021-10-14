@@ -1,4 +1,5 @@
 import { Constants } from './classes/constants'
+import { DOMUtils } from './classes/utils'
 import { addTargetBlank } from './lib'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -8,6 +9,7 @@ import Vue from 'vue'
 
 import App from '@/components/app.vue'
 
+/* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const VueShortKey = require('vue-shortkey')
 
 library.add(faSyncAlt)
@@ -27,12 +29,14 @@ if (nav && nav.parentNode) {
     data: { originalBody }
   }).$mount()
 
+  // shorkeyをbody全体に効かせるために元のHTMLをVueのコンポーネント化する
   appElement.appendChild(app.$el)
   document.body.appendChild(appElement)
 
+  // HTMLを埋め込み直した後に各種機能を復活させる
+  // document.head.innerHTMLで元の<head>を差し込み直すだけではscriptが読み込み直されなかった
+  if (DOMUtils.scripts) {
+    document.head.append(...DOMUtils.scripts)
+  }
   addTargetBlank()
-
-  const originalHead = document.head.innerHTML
-  document.head.innerHTML = ''
-  document.head.innerHTML = originalHead
 }

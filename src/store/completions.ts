@@ -82,6 +82,7 @@ class Completions extends VuexModule {
 
   @Mutation
   changeFocus(): void {
+    // app.vueのfucus()を呼び出すために値を替える
     this._focus = Math.random()
   }
 
