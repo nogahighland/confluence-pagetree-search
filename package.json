@@ -10,7 +10,7 @@
   "devDependencies": {
     "@types/chrome": "^0.0.159",
     "@types/copy-webpack-plugin": "^8.0.1",
-    "@types/faker": "^5.5.8",
+    "@types/faker": "^5.5.9",
     "@types/jest": "^27.0.2",
     "@types/pako": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
