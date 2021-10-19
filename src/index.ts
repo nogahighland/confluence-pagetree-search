@@ -10,12 +10,15 @@ import Vue from 'vue'
 import App from '@/components/app.vue'
 
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+const VueClipboard = require('vue-clipboard2')
+/* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const VueShortKey = require('vue-shortkey')
 
 library.add(faSyncAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(VueShortKey)
+Vue.use(VueClipboard)
 
 const nav = document.querySelector('.acs-nav-sections')
 

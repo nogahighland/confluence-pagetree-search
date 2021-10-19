@@ -89,6 +89,12 @@ export class DOMUtils {
     })
   }
 
+  static get shortLink(): string {
+    /** eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
+    return (document.querySelector('link[rel=shortlink]') as HTMLLinkElement)
+      .href
+  }
+
   private static extractSubTree(
     li: HTMLLIElement
   ): {

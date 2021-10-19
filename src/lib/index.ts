@@ -27,3 +27,5 @@ export const transitToEditPage = (): void => {
   }
   location.href = (editLink as HTMLAnchorElement).href
 }
+
+export const compactButtons = (): void => {}

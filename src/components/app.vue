@@ -1,6 +1,6 @@
 <template lang="pug">
 #app(
-  v-shortkey='{ "meta+k": ["meta", "k"], esc: ["esc"], edit: ["e"] }'
+  v-shortkey='shortkey'
   @shortkey='onShortkey',
   )
   overlay
@@ -24,6 +24,8 @@
       p.count(v-if='count') 全{{count}}件
 
       suggestion(v-for='(node, i) in nodeList' :key='i' :index='i' :node='node')
+
+    copied#copied(:text="shortLink")
   confluence(:originalBody='originalBody')
 </template>
 
@@ -32,17 +34,19 @@
 
 import { Component, Vue } from 'vue-property-decorator'
 
+import { DOMUtils } from '@/classes/utils'
 import Confluence from '@/components/confluence.vue'
+import Copied from '@/components/copied.vue'
 import Overlay from '@/components/overlay.vue'
 import Suggestion from '@/components/suggestion.vue'
 import { transitToEditPage } from '@/lib'
 import { completions } from '@/store/completions'
 import { overlay } from '@/store/overlay'
 import { pageTree } from '@/store/page-tree'
-import { Node } from '@/types'
+import { Node, shortkeyObject, shortkeys } from '@/types'
 
 @Component({
-  components: { Suggestion, Confluence, Overlay }
+  components: { Suggestion, Confluence, Overlay, Copied }
 })
 export default class App extends Vue {
   private originalBody: string | null = null
@@ -56,7 +60,7 @@ export default class App extends Vue {
     pageTree.forceSyncTree({ disableSearch: true })
   }
 
-  onShortkey(onoff: { srcKey: 'meta+k' | 'esc' | 'edit' }): void {
+  onShortkey(onoff: { srcKey: shortkeys }): void {
     switch (onoff.srcKey) {
       case 'meta+k':
         overlay.setDisplay(!overlay.display)
@@ -67,6 +71,10 @@ export default class App extends Vue {
         break
       case 'edit':
         transitToEditPage()
+        break
+      case 'copy-k':
+      case 'copy-s':
+        this.$copyText(DOMUtils.shortLink)
         break
     }
     completions.setFocus(overlay.display)
@@ -91,6 +99,19 @@ export default class App extends Vue {
       return
     }
     location.href = completions.nodeList[completions.selectIndex].url
+  }
+
+  get shortkey(): shortkeyObject {
+    const defaultKeys = {
+      'meta+k': ['meta', 'k'],
+      esc: ['esc'],
+      edit: ['e']
+    }
+    if (!overlay.display) {
+      return { ...defaultKeys, ...{ 'copy-s': ['s'], 'copy-k': ['k'] } }
+    } else {
+      return defaultKeys
+    }
   }
 
   get query(): string | null {
@@ -129,6 +150,10 @@ export default class App extends Vue {
 
   get selectIndex(): number {
     return completions.selectIndex
+  }
+
+  get shortLink(): string {
+    return DOMUtils.shortLink
   }
 }
 </script>
