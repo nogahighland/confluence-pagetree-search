@@ -19,3 +19,11 @@ export const hideOriginalPageTree = (): void => {
     )
     .forEach(e => ((e as HTMLDivElement).style.display = 'none'))
 }
+
+export const transitToEditPage = (): void => {
+  const editLink = document.querySelector('#editPageLink')
+  if (!editLink) {
+    return
+  }
+  location.href = (editLink as HTMLAnchorElement).href
+}

@@ -1,5 +1,8 @@
 <template lang="pug">
-#app(v-shortkey='{ "meta+k":["meta", "k"], esc:["esc"] }' @shortkey='onShortkey')
+#app(
+  v-shortkey='{ "meta+k": ["meta", "k"], esc: ["esc"], edit: ["e"] }'
+  @shortkey='onShortkey',
+  )
   overlay
     #confluence-pagetree-search(@click.stop)
       input(
@@ -32,6 +35,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import Confluence from '@/components/confluence.vue'
 import Overlay from '@/components/overlay.vue'
 import Suggestion from '@/components/suggestion.vue'
+import { transitToEditPage } from '@/lib'
 import { completions } from '@/store/completions'
 import { overlay } from '@/store/overlay'
 import { pageTree } from '@/store/page-tree'
@@ -52,7 +56,7 @@ export default class App extends Vue {
     pageTree.forceSyncTree()
   }
 
-  onShortkey(onoff: { srcKey: 'meta+k' | 'esc' }): void {
+  onShortkey(onoff: { srcKey: 'meta+k' | 'esc' | 'edit' }): void {
     switch (onoff.srcKey) {
       case 'meta+k':
         overlay.setDisplay(!overlay.display)
@@ -60,6 +64,9 @@ export default class App extends Vue {
       case 'esc':
         overlay.setDisplay(false)
         completions.changeQuery('')
+        break
+      case 'edit':
+        transitToEditPage()
         break
     }
     completions.setFocus(overlay.display)
