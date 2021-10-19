@@ -29,7 +29,7 @@ if (nav && nav.parentNode) {
     data: { originalBody }
   }).$mount()
 
-  // shorkeyをbody全体に効かせるために元のHTMLをVueのコンポーネント化する
+  // shortkeyをbody全体に効かせるために元のHTMLをVueのコンポーネント化する
   appElement.appendChild(app.$el)
   document.body.appendChild(appElement)
 

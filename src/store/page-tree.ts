@@ -35,14 +35,16 @@ class PageTree extends VuexModule {
       }
     } else {
       console.info('no data restored')
-      this.forceSyncTree()
+      this.forceSyncTree({ disableSearch: true })
     }
   }
 
   @Action({ rawError: true })
-  async forceSyncTree(): Promise<void> {
+  async forceSyncTree(prop = { disableSearch: false }): Promise<void> {
     console.info('fetching')
-    this.setSyncing()
+    if (prop.disableSearch) {
+      this.setSyncing()
+    }
     const response = await ConfluenceApi.request()
     const treeDom = new DOMParser().parseFromString(response.data, 'text/html')
       .body.firstChild as HTMLUListElement

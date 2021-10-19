@@ -53,7 +53,7 @@ export default class App extends Vue {
   }
 
   sync(): void {
-    pageTree.forceSyncTree()
+    pageTree.forceSyncTree({ disableSearch: true })
   }
 
   onShortkey(onoff: { srcKey: 'meta+k' | 'esc' | 'edit' }): void {
@@ -87,8 +87,7 @@ export default class App extends Vue {
   }
 
   onEnter(e: KeyboardEvent): void {
-    // 日本語確定は229
-    if (e.keyCode != 13) {
+    if (e.isComposing) {
       return
     }
     location.href = completions.nodeList[completions.selectIndex].url
@@ -112,7 +111,7 @@ export default class App extends Vue {
 
   get placeholder(): string {
     if (this.syncReady) {
-      return 'キーワードを入力して下さい'
+      return 'ページタイトルを入力して下さい'
     } else {
       return 'ページ情報を取得中です'
     }
