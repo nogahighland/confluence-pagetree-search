@@ -22,7 +22,7 @@ import Vue from 'vue'
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $copyText: (value: string) => void
+    $copyText: (value: string) => Promise<void>
   }
 }
 
