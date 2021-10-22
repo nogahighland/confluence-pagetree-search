@@ -1,7 +1,8 @@
 <template lang="pug">
-div(class='container' :class='classes' @animationend='onAnimationEnd')
-  span Copied
-  span.target {{text}}
+div.outer
+  div.container(:class='classes' @animationend='onAnimationEnd')
+    span Copied
+    span.target {{text}}
 </template>
 
 <script lang="ts">
@@ -27,14 +28,21 @@ export default class Copied extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.outer {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
 .container {
+  display: none;
   position: fixed;
   background-color: #00dd99;
   color: #ffffff;
   z-index: 12;
   box-shadow: 0 0 8px gray;
   align-items: center;
-  display: none;
   justify-content: center;
   height: 3em;
   padding: 0 1em;
@@ -51,7 +59,7 @@ export default class Copied extends Vue {
 
 .show {
   display: flex;
-  animation: fadeIn 1s, fadeOut 1s 1s;
+  animation: fadeIn 1s, fadeOut 1s 2s;
 }
 
 @keyframes fadeIn {

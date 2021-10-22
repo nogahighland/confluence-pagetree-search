@@ -25,7 +25,7 @@
       suggestion(v-for='(node, i) in nodeList' :key='i' :index='i' :node='node')
 
   confluence(:originalBody='originalBody')
-  copied#copied(:text="shortLink", :show='showToast' @animationend='showToast = false')
+  copied#copied(:text="shortLink", :show='showToast' @animationend='showToast = false' class='copied')
 </template>
 
 <script lang="ts">
