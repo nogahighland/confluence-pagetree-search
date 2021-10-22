@@ -1,7 +1,8 @@
 <template lang="pug">
 div.outer
   div.container(:class='classes' @animationend='onAnimationEnd')
-    span Copied
+    span
+      font-awesome-icon(icon='copy')
     span.target {{text}}
 </template>
 
@@ -41,7 +42,7 @@ export default class Copied extends Vue {
   background-color: #00dd99;
   color: #ffffff;
   z-index: 12;
-  box-shadow: 0 0 8px gray;
+  box-shadow: 0 0 8px #bbbbbb;
   align-items: center;
   justify-content: center;
   height: 3em;
@@ -59,27 +60,24 @@ export default class Copied extends Vue {
 
 .show {
   display: flex;
-  animation: fadeIn 1s, fadeOut 1s 2s;
+  animation: fade 3s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from {
-    bottom: 0;
+@keyframes fade {
+  0% {
+    top: 0;
     opacity: 0;
   }
-  to {
-    bottom: 30px;
+  30% {
+    top: 30px;
     opacity: 1;
   }
-}
-
-@keyframes fadeOut {
-  from {
-    bottom: 30px;
+  70% {
+    top: 30px;
     opacity: 1;
   }
-  to {
-    bottom: 0;
+  100% {
+    top: 0;
     opacity: 0;
   }
 }
@@ -87,5 +85,6 @@ export default class Copied extends Vue {
 .target {
   font-weight: bold;
   margin-left: 1em;
+  font-size: smaller;
 }
 </style>

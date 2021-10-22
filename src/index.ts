@@ -3,7 +3,7 @@ import { DOMUtils } from './classes/utils'
 import { addTargetBlank } from './lib'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
+import { faSyncAlt, faCopy } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Vue from 'vue'
 
@@ -14,7 +14,7 @@ const VueClipboard = require('vue-clipboard2')
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const VueShortKey = require('vue-shortkey')
 
-library.add(faSyncAlt)
+library.add(faSyncAlt, faCopy)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(VueShortKey)
