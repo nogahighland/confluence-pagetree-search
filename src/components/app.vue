@@ -57,9 +57,10 @@ export default class App extends Vue {
     setInterval(pageTree.restoreTree, 1000 * 60 * 10)
   }
 
-  onShortkey(onoff: { srcKey: shortkeys }): void {
+  onShortkey(onoff: { srcKey: ShortKey }): void {
     switch (onoff.srcKey) {
       case 'meta+k':
+      case 'meta+space':
         overlay.setDisplay(!overlay.display)
         break
       case 'esc':
@@ -99,11 +100,13 @@ export default class App extends Vue {
     location.href = completions.nodeList[completions.selectIndex].url
   }
 
-  get shortkey(): shortkeyObject {
-    const defaultKeys = {
-      'meta+k': ['meta', 'k'],
-      esc: ['esc']
+  get shortkey(): ShortKeyObject {
+    let defaultKeys: ShortKeyObject = {
+      esc: ['esc'],
+      'meta+space': ['meta', 'space'],
+      'meta+k': ['meta', 'k']
     }
+
     if (!overlay.display) {
       return {
         ...defaultKeys,
