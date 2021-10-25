@@ -26,5 +26,19 @@ declare module 'vue/types/vue' {
   }
 }
 
-export type shortkeys = 'meta+k' | 'esc' | 'edit' | 'copy-s' | 'copy-k'
-export type shortkeyObject = { [key: shortkeys]: string[] }
+export type ShortKey =
+  | 'meta+k'
+  | 'meta+space'
+  | 'esc'
+  | 'edit'
+  | 'copy-s'
+  | 'copy-k'
+
+export type ShortKeyObject = {
+  'meta+k'?: ['meta', 'k']
+  'meta+space'?: ['meta', 'space']
+  esc?: ['esc']
+  edit?: ['e']
+  'copy-s'?: ['s']
+  'copy-k'?: ['k']
+}

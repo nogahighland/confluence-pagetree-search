@@ -43,7 +43,7 @@ import { transitToEditPage } from '@/lib'
 import { completions } from '@/store/completions'
 import { overlay } from '@/store/overlay'
 import { pageTree } from '@/store/page-tree'
-import { Node, shortkeyObject, shortkeys } from '@/types'
+import { Node, ShortKeyObject, ShortKey } from '@/types'
 
 @Component({
   components: { Suggestion, Confluence, Overlay, Copied, Sync }
