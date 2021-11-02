@@ -33,6 +33,7 @@ export type ShortKey =
   | 'edit'
   | 'copy-s'
   | 'copy-k'
+  | 'copy-page'
 
 export type ShortKeyObject = {
   'meta+k'?: ['meta', 'k']
@@ -41,4 +42,5 @@ export type ShortKeyObject = {
   edit?: ['e']
   'copy-s'?: ['s']
   'copy-k'?: ['k']
+  'copy-page'?: ['p']
 }

@@ -95,6 +95,13 @@ export class DOMUtils {
       .href
   }
 
+  static getHref(selector: string): string | undefined {
+    const a = document.querySelector(selector)
+    if (a && a instanceof HTMLAnchorElement) {
+      return a.href
+    }
+  }
+
   private static extractSubTree(
     li: HTMLLIElement
   ): {

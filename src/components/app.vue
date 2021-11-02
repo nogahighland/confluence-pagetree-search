@@ -26,6 +26,7 @@
 
   confluence(:originalBody='originalBody')
   copied#copied(:text="shortLink", :show='showToast' @animationend='showToast = false' class='copied')
+  buttons
 </template>
 
 <script lang="ts">
@@ -34,6 +35,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 import { DOMUtils } from '@/classes/utils'
+import Buttons from '@/components/buttons.vue'
 import Confluence from '@/components/confluence.vue'
 import Copied from '@/components/copied.vue'
 import Overlay from '@/components/overlay.vue'
@@ -46,7 +48,7 @@ import { pageTree } from '@/store/page-tree'
 import { Node, ShortKeyObject, ShortKey } from '@/types'
 
 @Component({
-  components: { Suggestion, Confluence, Overlay, Copied, Sync }
+  components: { Suggestion, Confluence, Overlay, Copied, Sync, Buttons }
 })
 export default class App extends Vue {
   private originalBody: string | null = null
