@@ -39,7 +39,7 @@ After you install `yarn`, then install dependencies under `node_modules/` and bu
 
 ```sh
 $ yarn install
-$ yarn run webpack --watch
+$ JIRA_HOST='https://your-jira-host' yarn run webpack --watch
 ```
 
 To take screenshot, you can use `STORE=1` environment variable to hide your own space's confidential information.

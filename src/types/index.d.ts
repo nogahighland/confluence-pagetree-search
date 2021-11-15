@@ -44,3 +44,41 @@ export type ShortKeyObject = {
   'copy-k'?: ['k']
   'copy-page'?: ['p']
 }
+
+export type NotificationBody = {
+  id: number
+  iconUrl: string
+  title: string
+  description: string
+  url: string
+  globalId: string
+  metadata: {
+    user: string
+    username: string
+    pageId: number
+    itemContentId: number
+    contentId: number
+    contentVersion: number
+    watching: boolean
+    like: boolean
+  }
+  created: number
+  updated: number
+  status: string
+  read: boolean
+  pinned: boolean
+}
+
+export type Notification = {
+  item: {
+    title: string
+    url: string
+    applicationLinkId: string
+    application: string
+    entity: 'page' | 'issue' | 'comment'
+    action: string
+    pinned: boolean
+    aggregateKey: string
+  }
+  notifications: NotificationBody[]
+}

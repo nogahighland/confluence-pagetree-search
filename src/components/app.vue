@@ -3,6 +3,9 @@
   v-shortkey='shortkey'
   @shortkey='onShortkey',
   )
+
+  notification-wrapper
+
   overlay
     #confluence-pagetree-search(@click.stop)
       input(
@@ -38,6 +41,7 @@ import { DOMUtils } from '@/classes/utils'
 import Buttons from '@/components/buttons.vue'
 import Confluence from '@/components/confluence.vue'
 import Copied from '@/components/copied.vue'
+import NotificationWrapper from '@/components/notification-wrapper.vue'
 import Overlay from '@/components/overlay.vue'
 import Suggestion from '@/components/suggestion.vue'
 import Sync from '@/components/sync.vue'
@@ -48,7 +52,15 @@ import { pageTree } from '@/store/page-tree'
 import { Node, ShortKeyObject, ShortKey } from '@/types'
 
 @Component({
-  components: { Suggestion, Confluence, Overlay, Copied, Sync, Buttons }
+  components: {
+    NotificationWrapper,
+    Suggestion,
+    Confluence,
+    Overlay,
+    Copied,
+    Sync,
+    Buttons
+  }
 })
 export default class App extends Vue {
   private originalBody: string | null = null
@@ -77,6 +89,10 @@ export default class App extends Vue {
         this.$copyText(DOMUtils.shortLink)
         this.showToast = true
         break
+      case 'copy-page':
+        /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
+        location.href = DOMUtils.getHref('#action-copy-page-link')!
+        break
     }
     completions.setFocus(overlay.display)
   }
@@ -99,14 +115,19 @@ export default class App extends Vue {
     if (e.isComposing) {
       return
     }
-    location.href = completions.nodeList[completions.selectIndex].url
+    if (e.metaKey) {
+      window.open(completions.nodeList[completions.selectIndex].url, '_blank')
+    } else {
+      location.href = completions.nodeList[completions.selectIndex].url
+    }
   }
 
   get shortkey(): ShortKeyObject {
     let defaultKeys: ShortKeyObject = {
       esc: ['esc'],
       'meta+space': ['meta', 'space'],
-      'meta+k': ['meta', 'k']
+      'meta+k': ['meta', 'k'],
+      'copy-page': ['p']
     }
 
     if (!overlay.display) {

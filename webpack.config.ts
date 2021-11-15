@@ -59,7 +59,8 @@ export default {
       ]
     }),
     new VueLoaderPlugin(),
-    new EnvironmentPlugin({ STORE: false })
+    new EnvironmentPlugin({ STORE: false }),
+    new EnvironmentPlugin({ JIRA_HOST: 'https://your-jira-host' })
   ],
 
   resolve: {
