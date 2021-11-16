@@ -126,14 +126,13 @@ export default class App extends Vue {
     let defaultKeys: ShortKeyObject = {
       esc: ['esc'],
       'meta+space': ['meta', 'space'],
-      'meta+k': ['meta', 'k'],
-      'copy-page': ['p']
+      'meta+k': ['meta', 'k']
     }
 
     if (!overlay.display) {
       return {
         ...defaultKeys,
-        ...{ 'copy-s': ['s'], 'copy-k': ['k'], edit: ['e'] }
+        ...{ 'copy-s': ['s'], 'copy-k': ['k'], edit: ['e'], 'copy-page': ['p'] }
       }
     } else {
       return defaultKeys
