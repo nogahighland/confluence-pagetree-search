@@ -1,6 +1,6 @@
 import { Constants } from './classes/constants'
 import { DOMUtils } from './classes/utils'
-import { addTargetBlank } from './lib'
+import { addTargetBlank, deleteOriginalNotification } from './lib'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSyncAlt, faCopy, faBell } from '@fortawesome/free-solid-svg-icons'
@@ -42,4 +42,5 @@ if (nav && nav.parentNode) {
     document.head.append(...DOMUtils.scripts)
   }
   addTargetBlank()
+  deleteOriginalNotification()
 }

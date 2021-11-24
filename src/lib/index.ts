@@ -27,3 +27,10 @@ export const transitToEditPage = (): void => {
   }
   location.href = (editLink as HTMLAnchorElement).href
 }
+
+export const deleteOriginalNotification = (): void => {
+  const notification = document.querySelector('#notifications-anchor')
+  if (notification && notification.parentElement) {
+    notification.parentElement.remove()
+  }
+}
