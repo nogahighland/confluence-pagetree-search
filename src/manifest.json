@@ -20,7 +20,8 @@
     "_execute_page_action": {
       "suggested_key": {
         "windows": "Ctrl+Space",
-        "mac": "Ctrl+K"
+        "mac": "Ctrl+K",
+        "linux": "Ctrl+K"
       },
       "description": "拡張機能を有効にします"
     }
