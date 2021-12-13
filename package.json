@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@types/chrome": "^0.0.169",
-    "@types/copy-webpack-plugin": "^8.0.1",
+    "@types/copy-webpack-plugin": "^10.1.0",
     "@types/faker": "^5.5.9",
     "@types/jest": "^27.0.3",
     "@types/pako": "^1.0.2",
