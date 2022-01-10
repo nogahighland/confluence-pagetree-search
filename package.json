@@ -52,7 +52,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^2.0.6",
     "@types/moment": "^2.13.0",
-    "faker": "^5.5.3",
+    "faker": "^6.6.6",
     "moment": "^2.29.1",
     "pako": "1.0.2",
     "vue-class-component": "^7.2.6",
