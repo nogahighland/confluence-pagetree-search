@@ -8,6 +8,7 @@ import {
   getModule
 } from 'vuex-module-decorators'
 
+import { NodeModel } from '@/classes/models/node'
 import { SuggestionUtils } from '@/classes/utils/suggestion-utils'
 import { store } from '@/store'
 import { Tree } from '@/types'
@@ -61,7 +62,6 @@ class Completions extends VuexModule {
   @Mutation
   createNodeList(): void {
     const query = this._query
-    // https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
     if (!query) {
       this._nodeList = []
       return
@@ -78,6 +78,10 @@ class Completions extends VuexModule {
     const regexp = SuggestionUtils.createFilterRegexp(query)
 
     this._nodeList = sourceNodeList.filter(n => regexp.test(n.linkText))
+    // const sourceNodeModelList = sourceNodeList.map(NodeModel.toModel)
+    // this._nodeList = sourceNodeModelList
+    //   .filter(n => n.isMatch(regexp))
+    //   .map(n => n.toInterface())
   }
 
   @Mutation
