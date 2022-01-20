@@ -28,11 +28,10 @@ class PageTree extends VuexModule {
           .isAfter(moment(restoredData.timestamp))
       ) {
         console.info('restored data is old')
-        this.forceSyncTree()
       } else {
         console.info('restored data is fresh')
-        this.setTree(restoredData)
       }
+      this.setTree(restoredData)
     } else {
       console.info('no data restored')
       this.forceSyncTree({ disableSearch: true })
