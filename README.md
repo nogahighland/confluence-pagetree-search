@@ -10,7 +10,7 @@ https://chrome.google.com/webstore/detail/confluence-better-pagetre/impgjbnbnoch
 
 ## Screenshots
 
-https://user-images.githubusercontent.com/1780339/136763140-d18000d3-b736-468b-b6a7-c4b663e9e71d.mov
+https://user-images.githubusercontent.com/1780339/150341461-f92dad08-706f-4f5c-8062-221fa724235e.mov
 
 ## Getting Started
 
