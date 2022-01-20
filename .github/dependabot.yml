@@ -8,3 +8,4 @@ updates:
   labels:
     - dependencies
     - automerge
+  target-branch: "r-confluence"
