@@ -37,6 +37,7 @@ rules:
   max-lines:
   - error
   - max: 200
+    skipBlankLines: true
 
   import/no-default-export:
   - error
