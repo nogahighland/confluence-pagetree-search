@@ -85,4 +85,5 @@ version|description
 2.0.1|Confluence Better Pagetree is now Confluence Tree Search extension.
 2.0.2|Change icon & resolve #198 #199 #200 #202 (Attomerge & security setting)
 2.0.3|Resolve #205 #206 (security bumps), #207 #208 (performance issues)
+3.0.0| #207
 
