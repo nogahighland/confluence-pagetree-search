@@ -1,6 +1,6 @@
 create-zip:
 	yarn run webpack --mode production
-	zip -r confluence-pagetree-search.zip ./dist
+	zip -r r-confluence-pagetree-search.zip ./dist
 
 serve:
 	yarn run webpack --watch

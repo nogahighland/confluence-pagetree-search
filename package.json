@@ -1,5 +1,5 @@
 {
-  "name": "confluence-pagetree-search",
+  "name": "r-confluence-pagetree-search",
   "version": "3.0.0",
   "main": "index.js",
   "license": "MIT",
