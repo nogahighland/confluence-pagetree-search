@@ -68,5 +68,7 @@ export default {
     alias: {
       '@': path.resolve('./src')
     }
-  }
+  },
+  // https://stackoverflow.com/questions/48047150/chrome-extension-compiled-by-webpack-throws-unsafe-eval-error
+  devtool: 'cheap-module-source-map'
 }
