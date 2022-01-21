@@ -6,7 +6,7 @@
 This is a chrome extension that add a feature to search R-Confluence pagetree by names.
 
 The extension can be installed here:
-https://chrome.google.com/webstore/detail/confluence-better-pagetre/impgjbnbnocheogednhacjjofkkkbpce/related
+https://chrome.google.com/webstore/detail/r-confluence-pagetree-sea/pdlopklcnfecnpnjcfcdmpfibfnjdlcj/
 
 ## Screenshots
 
