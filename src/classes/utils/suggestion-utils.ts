@@ -16,12 +16,6 @@ export class SuggestionUtils {
         levenshtein.get(query, node.linkText)
       )
 
-      console.table({
-        breadcrumb: node.breadcrumb,
-        linkText: node.linkText,
-        query,
-        score
-      })
       return score
     })
   }
