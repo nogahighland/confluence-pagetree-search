@@ -2,11 +2,12 @@
 .root(:class='rootClasses')
   .parents
     span.parent(v-for='(parent, i) in parents' :key='i')
-      a(:href='parent.url') {{ parent.linkText }}
+      a(:href='parent.url')
+        token-part(v-for='(token, i) in getTokens(parent.linkText)' :key='i' :token='token')
       span.arrow(v-if='i != parent.length - 1') >
   .suggestion
     a(:href='node.url')
-      token-part(v-for='(token, i) in tokens' :key='i' :token='token')
+      token-part(v-for='(token, i) in getTokens(node.linkText)' :key='i' :token='token')
 </template>
 
 <script lang="ts">
@@ -16,9 +17,9 @@ import TokenPart from './token-part.vue'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 import { SuggestionUtils } from '@/classes/utils/suggestion-utils'
+import { TreeUtils } from '@/classes/utils/tree-utils'
 import { completions } from '@/store/completions'
-import { pageTree } from '@/store/page-tree'
-import { Root, Token, Tree } from '@/types'
+import { Token, Tree } from '@/types'
 @Component({
   components: { TokenPart }
 })
@@ -28,29 +29,18 @@ export default class Suggestion extends Vue {
   @Prop()
   private index!: number
 
-  get tokens(): Token[] {
+  getTokens(text: string): Token[] {
     if (!completions.query) {
       return []
     }
     return SuggestionUtils.getTokens(
-      this.node.linkText,
+      text,
       SuggestionUtils.createEmphasizeRegexp(completions.query)
     )
   }
 
   get parents(): Tree[] {
-    const parents: Tree[] = []
-    if (!pageTree.root) {
-      return parents
-    }
-    let base: Root | Tree = pageTree.root
-    this.node.address.forEach(i => {
-      /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-      base = base.children![i]
-      parents.push(base as Tree)
-    })
-    parents.pop()
-    return parents
+    return TreeUtils.getParents(this.node)
   }
 
   get rootClasses(): { focused: boolean } {

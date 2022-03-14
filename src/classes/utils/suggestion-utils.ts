@@ -1,6 +1,32 @@
-import { Token } from '@/types'
+import levenshtein from 'fast-levenshtein'
+import { sortBy } from 'lodash'
+
+import { Token, Tree } from '@/types'
 
 export class SuggestionUtils {
+  static getSuggestions(sourceNodeList: Tree[], query: string): Tree[] {
+    const regexp = this.createFilterRegexp(query)
+    const nodeList = sourceNodeList.filter(n => {
+      return regexp.test(n.breadcrumb || n.linkText)
+    })
+
+    return sortBy(nodeList, node => {
+      const score = Math.min(
+        levenshtein.get(query, node.breadcrumb || ''),
+        levenshtein.get(query, node.linkText)
+      )
+
+      console.table({
+        breadcrumb: node.breadcrumb,
+        linkText: node.linkText,
+        query,
+        score
+      })
+      return score
+    })
+  }
+
+  // TODO privateで良くなった
   static getTokens(text: string, regexp: RegExp): Token[] {
     const tokens: Token[] = []
     const match = [...text.matchAll(regexp)]
@@ -34,6 +60,7 @@ export class SuggestionUtils {
     return tokens
   }
 
+  // TODO privateで良くなった
   static createFilterRegexp(query: string): RegExp {
     const r = query
       .trim()
@@ -44,6 +71,7 @@ export class SuggestionUtils {
     return new RegExp(`^${r}`, 'gi')
   }
 
+  // TODO privateで良くなった
   static createEmphasizeRegexp(query: string): RegExp {
     const r = `(${query
       .trim()

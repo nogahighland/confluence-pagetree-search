@@ -74,9 +74,7 @@ class Completions extends VuexModule {
       sourceNodeList = pageTree.allNodeList
     }
 
-    const regexp = SuggestionUtils.createFilterRegexp(query)
-
-    this._nodeList = sourceNodeList.filter(n => regexp.test(n.linkText))
+    this._nodeList = SuggestionUtils.getSuggestions(sourceNodeList, query)
   }
 
   @Mutation
