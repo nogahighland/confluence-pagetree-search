@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "R-Confluence Pagetree Search",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Add a feature to search page tree by its name.",
   "content_security_policy": {
     "extension_pages": "default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';base-uri 'self';form-action 'self'"

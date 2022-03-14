@@ -5,6 +5,7 @@ export interface Root {
 
 interface Node {
   linkText: string
+  breadcrumb?: string
   url: string
   pageId: string
   address: number[]

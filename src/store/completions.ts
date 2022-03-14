@@ -62,7 +62,7 @@ class Completions extends VuexModule {
   createNodeList(): void {
     const query = this._query
     // https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
-    if (!query) {
+    if (!query || encodeURI(query).split(/%..|./).length < 4) {
       this._nodeList = []
       return
     }
@@ -75,14 +75,12 @@ class Completions extends VuexModule {
       sourceNodeList = pageTree.allNodeList
     }
 
-    const regexp = SuggestionUtils.createFilterRegexp(query)
-
-    this._nodeList = sourceNodeList.filter(n => regexp.test(n.linkText))
+    this._nodeList = SuggestionUtils.getSuggestions(sourceNodeList, query)
   }
 
   @Mutation
   changeFocus(): void {
-    // app.vueのfucus()を呼び出すために値を替える
+    // app.vueのfocus()を呼び出すために値を替える
     this._focus = Math.random()
   }
 

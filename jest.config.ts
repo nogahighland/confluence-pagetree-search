@@ -29,5 +29,6 @@ export default {
         ancestorSeparator: ' › '
       }
     ]
-  ]
+  ],
+  testEnvironment: 'jsdom'
 }

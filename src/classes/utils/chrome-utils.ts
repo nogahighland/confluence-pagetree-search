@@ -4,7 +4,7 @@ import { Constants } from '../constants'
 
 import { Root } from '@/types'
 
-const chromeStorage = window.chrome.storage.local
+const chromeStorage = window.chrome?.storage?.local
 
 export class ChromeUtils {
   // TODO もっと汎用的にする

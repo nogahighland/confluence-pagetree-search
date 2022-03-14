@@ -16,12 +16,9 @@ export class DOMUtils {
       const match = rootIdDiv.id.match(/(\d+)/)
       if (match) {
         return match[0]
-      } else {
-        throw new Error('root idが見つかりません')
       }
-    } else {
-      throw new Error('root idが見つかりません')
     }
+    return ''
   }
 
   static get activeNodeId(): string {

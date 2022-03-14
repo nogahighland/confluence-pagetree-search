@@ -63,6 +63,7 @@ class PageTree extends VuexModule {
   @Mutation
   private setTree(root: Root): void {
     this._root = root
+    TreeUtils.addBreadcrumb(this._root)
     ChromeUtils.storeData(root)
     this._syncReady = true
   }
