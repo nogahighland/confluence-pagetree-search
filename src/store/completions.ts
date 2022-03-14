@@ -61,7 +61,6 @@ class Completions extends VuexModule {
   @Mutation
   createNodeList(): void {
     const query = this._query
-    // https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
     if (!query) {
       this._nodeList = []
       return
@@ -82,7 +81,7 @@ class Completions extends VuexModule {
 
   @Mutation
   changeFocus(): void {
-    // app.vueのfucus()を呼び出すために値を替える
+    // app.vueのfocus()を呼び出すために値を替える
     this._focus = Math.random()
   }
 
