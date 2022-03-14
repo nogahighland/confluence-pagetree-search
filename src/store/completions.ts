@@ -61,7 +61,8 @@ class Completions extends VuexModule {
   @Mutation
   createNodeList(): void {
     const query = this._query
-    if (!query) {
+    // https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
+    if (!query || encodeURI(query).split(/%..|./).length < 4) {
       this._nodeList = []
       return
     }
