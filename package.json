@@ -57,7 +57,7 @@
     "faker": "^5.5.3",
     "fast-levenshtein": "^3.0.0",
     "lodash": "^4.17.21",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "pako": "1.0.2",
     "vue-class-component": "^7.2.6",
     "vue-clipboard2": "^0.3.3",
