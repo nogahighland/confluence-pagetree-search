@@ -12,6 +12,15 @@ https://chrome.google.com/webstore/detail/confluence-better-pagetre/impgjbnbnoch
 
 https://user-images.githubusercontent.com/1780339/136763140-d18000d3-b736-468b-b6a7-c4b663e9e71d.mov
 
+## Keyboard shortcuts
+
+| keys | action |
+|-----|-----|
+| Cmd + Shift + K | Enable Extension |
+| Cmd + K | Search |
+
+for Windows Users, use the Ctrl instead of Cmd
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
