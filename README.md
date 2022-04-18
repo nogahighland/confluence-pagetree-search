@@ -16,10 +16,8 @@ https://user-images.githubusercontent.com/1780339/136763140-d18000d3-b736-468b-b
 
 | keys | action |
 |-----|-----|
-| Cmd + Shift + K, (Windows)Ctrl + Shift + Space (Default) | Enable Extension |
-| Cmd + K (Ctrl + space) | Search |
-
-for Windows Users, use the Ctrl instead of Cmd
+| Mac: <kbd> <kbd> Cmd </kbd> + <kbd> Shift </kbd> + <kbd> K </kbd> </kbd> <br> Windows: <kbd> <kbd> Ctrl </kbd> + <kbd> Shift </kbd> + <kbd> Space </kbd> </kbd> | Enable Extension <br> (Default) |
+| Mac: <kbd> <kbd> Cmd </kbd> + <kbd> K </kbd> </kbd><br> Windows: <kbd> <kbd> Ctrl </kbd> + <kbd> space </kbd> </kbd> | Search |
 
 ## Getting Started
 
