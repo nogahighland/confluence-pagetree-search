@@ -16,7 +16,7 @@ https://user-images.githubusercontent.com/1780339/136763140-d18000d3-b736-468b-b
 
 | keys | action |
 |-----|-----|
-| Cmd + Shift + K | Enable Extension |
+| Cmd + Shift + K, (Windows)Ctrl + Shift + Space (Default) | Enable Extension |
 | Cmd + K | Search |
 
 for Windows Users, use the Ctrl instead of Cmd
