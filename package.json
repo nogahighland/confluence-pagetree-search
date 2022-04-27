@@ -16,7 +16,7 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.31.1",
     "@vue/eslint-config-typescript": "^7.0.0",
-    "axios": "^0.27.1",
+    "axios": "^0.27.2",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
