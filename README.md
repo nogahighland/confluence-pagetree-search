@@ -12,6 +12,13 @@ https://chrome.google.com/webstore/detail/confluence-better-pagetre/impgjbnbnoch
 
 https://user-images.githubusercontent.com/1780339/136763140-d18000d3-b736-468b-b6a7-c4b663e9e71d.mov
 
+## Keyboard shortcuts
+
+| keys | action |
+|-----|-----|
+| Mac: <kbd> <kbd> Cmd </kbd> + <kbd> Shift </kbd> + <kbd> K </kbd> </kbd> <br> Windows: <kbd> <kbd> Ctrl </kbd> + <kbd> Shift </kbd> + <kbd> Space </kbd> </kbd> | Enable Extension <br> (Default) |
+| Mac: <kbd> <kbd> Cmd </kbd> + <kbd> K </kbd> </kbd><br> Windows: <kbd> <kbd> Ctrl </kbd> + <kbd> space </kbd> </kbd> | Search |
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
