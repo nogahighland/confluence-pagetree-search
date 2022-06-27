@@ -87,4 +87,5 @@ version|description
 2.0.3|Resolve #205 #206 (security bumps), #207 #208 (performance issues)
 3.0.0| #207
 3.1.0| #339
+3.1.1| Security Updates
 
