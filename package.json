@@ -8,7 +8,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.192",
+    "@types/chrome": "^0.0.193",
     "@types/copy-webpack-plugin": "^10.1.0",
     "@types/faker": "^5.5.9",
     "@types/jest": "^27.5.0",
