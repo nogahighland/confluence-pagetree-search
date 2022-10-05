@@ -117,7 +117,7 @@ export default class App extends Vue {
     if (e.isComposing) {
       return
     }
-    if (e.metaKey) {
+    if (e.metaKey || e.ctrlKey) {
       window.open(completions.nodeList[completions.selectIndex].url, '_blank')
     } else {
       location.href = completions.nodeList[completions.selectIndex].url
