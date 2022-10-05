@@ -30,6 +30,8 @@ declare module 'vue/types/vue' {
 export type ShortKey =
   | 'meta+k'
   | 'meta+space'
+  | 'ctrl+k'
+  | 'ctrl+space'
   | 'esc'
   | 'edit'
   | 'copy-s'
@@ -39,6 +41,8 @@ export type ShortKey =
 export type ShortKeyObject = {
   'meta+k'?: ['meta', 'k']
   'meta+space'?: ['meta', 'space']
+  'ctrl+k'?: ['ctrl', 'k']
+  'ctrl+space'?: ['ctrl', 'space']
   esc?: ['esc']
   edit?: ['e']
   'copy-s'?: ['s']

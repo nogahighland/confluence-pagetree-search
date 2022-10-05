@@ -75,6 +75,8 @@ export default class App extends Vue {
     switch (onoff.srcKey) {
       case 'meta+k':
       case 'meta+space':
+      case 'ctrl+k':
+      case 'ctrl+space':
         overlay.setDisplay(!overlay.display)
         break
       case 'esc':
@@ -126,7 +128,9 @@ export default class App extends Vue {
     let defaultKeys: ShortKeyObject = {
       esc: ['esc'],
       'meta+space': ['meta', 'space'],
-      'meta+k': ['meta', 'k']
+      'meta+k': ['meta', 'k'],
+      'ctrl+space': ['ctrl', 'space'],
+      'ctrl+k': ['ctrl', 'k']
     }
 
     if (!overlay.display) {
