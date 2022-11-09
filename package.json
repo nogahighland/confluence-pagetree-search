@@ -28,7 +28,7 @@
     "eslint-plugin-vue": "^7.20.0",
     "jest": "^27.5.1",
     "jest-junit": "^14.0.1",
-    "node-sass": "^7.0.3",
+    "node-sass": "^8.0.0",
     "prettier-eslint-cli": "^5.0.1",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",
