@@ -12,6 +12,13 @@ https://chrome.google.com/webstore/detail/r-confluence-pagetree-sea/pdlopklcnfec
 
 https://user-images.githubusercontent.com/1780339/150341461-f92dad08-706f-4f5c-8062-221fa724235e.mov
 
+## Keyboard shortcuts
+
+| keys | action |
+|-----|-----|
+| Mac: <kbd> <kbd> Cmd </kbd> + <kbd> Shift </kbd> + <kbd> K </kbd> </kbd> <br> Windows: <kbd> <kbd> Ctrl </kbd> + <kbd> Shift </kbd> + <kbd> Space </kbd> </kbd> | Enable Extension <br> (Default) |
+| Mac: <kbd> <kbd> Cmd </kbd> + <kbd> K </kbd> </kbd><br> Windows: <kbd> <kbd> Ctrl </kbd> + <kbd> space </kbd> </kbd> | Search |
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
