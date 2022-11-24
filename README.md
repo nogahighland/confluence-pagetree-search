@@ -90,4 +90,4 @@ version|description
 3.1.1| Security Updates
 3.1.2| #446
 3.1.3| #447
-3.1.4| Security Updates
+3.1.4| #484
